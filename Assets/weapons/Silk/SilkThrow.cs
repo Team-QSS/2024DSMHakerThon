@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace weapons.Silk
@@ -11,10 +13,21 @@ namespace weapons.Silk
         public Vector2 executePos;
         public bool isGraped;
         public GameObject particle;
-        // Start is called before the first frame update
+        [SerializeField] private int particleInstanceCount;
+        private readonly Queue<GameObject> particlesQueue = new();
+        private readonly Queue<GameObject> parameterQueue = new();
+
+        private void Awake()
+        {
+            silkThrow = GameObject.Find("player").GetComponent<Silk>();
+            for (int i = 0; i < particleInstanceCount; i++)
+            {
+                particlesQueue.Enqueue(Instantiate(particle));
+            }
+        }
         private void Start()
         {
-            silkThrow = GameObject.Find("player").GetComponent<weapons.Silk.Silk>();
+            gameObject.SetActive(false);
             joint2D = GetComponent<SpringJoint2D>();
             stopPos = Vector2.zero;
             executePos = Vector2.zero;
@@ -30,7 +43,23 @@ namespace weapons.Silk
                 silkThrow.isAttach = true;
                 isBlocked = true;
                 stopPos = gameObject.transform.position;
-                Destroy(Instantiate(particle, gameObject.transform.position, Quaternion.Euler(0, 0, 0)),2f);
+                if (particlesQueue.Count == 0)
+                {
+                    var particleInstance =
+                        Instantiate(particle, gameObject.transform.position, Quaternion.Euler(0, 0, 0));
+                    particleInstance.SetActive(true);
+                    Destroy(particleInstance,2f);
+                }
+                else
+                {
+                    var particleInstance = particlesQueue.Dequeue();
+                    particleInstance.SetActive(true);
+                    particleInstance.transform.position = gameObject.transform.position;
+                    particleInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    particleInstance.GetComponent<ParticleSystem>().Play();
+                    parameterQueue.Enqueue(particleInstance);
+                    Invoke(nameof(ParticleDisable), 3f);
+                }
             }
             else if (collision.CompareTag("enemy"))
             {
@@ -40,6 +69,12 @@ namespace weapons.Silk
             }
         }
 
+        private void ParticleDisable()
+        {
+            var particleInstance = parameterQueue.Dequeue();
+            particleInstance.SetActive(false);
+            particlesQueue.Enqueue(particleInstance);
+        }
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (!collision.CompareTag("wall")) return;
