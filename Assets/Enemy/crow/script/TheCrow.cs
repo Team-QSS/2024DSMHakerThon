@@ -10,6 +10,7 @@ namespace Enemy.crow.script
         private Vector3 newPosX;
         [SerializeField] private Animator crowAnim;
         public static float behavior;
+        private static readonly int IsBiting = Animator.StringToHash("isbiting");
 
         // Update is called once per frame
         private void Update()
@@ -20,7 +21,7 @@ namespace Enemy.crow.script
             {
                 if (Mathf.Abs(gameObject.transform.position.x - newPosX.x) < 19)
                 {
-                    crowAnim.SetTrigger("isbiting");
+                    crowAnim.SetTrigger(IsBiting);
                     gameObject.transform.position =
                         Vector3.MoveTowards(gameObject.transform.position, newPosX, 8*Time.deltaTime);
                 }

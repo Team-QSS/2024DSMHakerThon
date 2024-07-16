@@ -10,6 +10,7 @@ TagManager:
   - Pyke
   - crow
   - Barrier
+  - Mentis
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - enemyattack
   - player
   - Barrier
-  - 
+  - Mentis
   - 
   - 
   - 
