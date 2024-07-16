@@ -1,24 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using player.script;
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+namespace Enemy
 {
-    public GameObject core;
-    private PlayerHitBox nockingBack;
-    private void Start()
+    public class Spike : MonoBehaviour
     {
-        nockingBack = core.GetComponent<PlayerHitBox>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        if (collider2D.CompareTag("Player"))
+        public GameObject core;
+        private PlayerHitBox knockingBack;
+        private void Start()
         {
-            nockingBack.NockBack(gameObject.transform.position,5f,0.5f);
+            knockingBack = core.GetComponent<PlayerHitBox>();
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player")) knockingBack.NockBack(gameObject.transform.position,5f,0.5f);
+        }
     }
 }
