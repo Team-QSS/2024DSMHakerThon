@@ -267,7 +267,7 @@ MonoBehaviour:
   jumpingPower: 4.7
   speed: 8
   isFacingRight: 1
-  unlockdash: 0
+  unlockDash: 0
   dashingPower: 40
   dashingCooldown: 0.8
   rb: {fileID: 2774089156257800872}
@@ -281,11 +281,11 @@ MonoBehaviour:
   platformCheck: {fileID: 8149682487206003482}
   tr: {fileID: 3958290759993823022}
   bcd2: {fileID: 1451805287266441741}
-  jumpstarttime: 2
-  jumptime: 0
-  isjumping: 0
+  jumpStartTime: 2
+  jumpTime: 0
+  isJumping: 0
   nockBack: {x: 0, y: 0, z: 0}
-  isstuned: 0
+  stunned: 0
 --- !u!96 &3958290759993823022
 TrailRenderer:
   serializedVersion: 3
@@ -412,9 +412,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 0}
-  Pyke: {fileID: 0}
-  maincam: {fileID: 0}
-  isPykeActive: 0
+  silk: {fileID: 0}
+  mainCam: {fileID: 0}
+  isSilkActive: 0
   isLineMax: 0
   isAttach: 0
 --- !u!1 &8211640034619753786
@@ -651,4 +651,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67301f083e8901f458be2a4e6fac0109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 6049932543393177092}
+  player: {fileID: 6049932543393177092}

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace player.script
 {
@@ -11,7 +10,7 @@ namespace player.script
         public float speed = 8f;
         public bool isFacingRight = true;
     
-        public bool unlockDash = false;
+        public bool unlockDash;
         private bool canDash = true;
         private bool isDashing;
         public float dashingPower = 24f;
@@ -34,7 +33,7 @@ namespace player.script
         public Vector3 nockBack;
         public bool stunned;
 
-        private static readonly int Isjumping = Animator.StringToHash("isjumping");
+        private static readonly int IsJumping = Animator.StringToHash("isjumping");
         private static readonly int XVelocity = Animator.StringToHash("xVelocity");
 
         // Start is called before the first frame update
@@ -55,9 +54,9 @@ namespace player.script
             if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y > 0f)
             {
                 //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-                playerAnim.SetBool(Isjumping,true);
+                playerAnim.SetBool(IsJumping,true);
             }
-            else playerAnim.SetBool(Isjumping,false);
+            else playerAnim.SetBool(IsJumping,false);
 
             if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash) StartCoroutine(Dash());
 
