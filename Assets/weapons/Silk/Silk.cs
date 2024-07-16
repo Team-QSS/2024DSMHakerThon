@@ -12,6 +12,7 @@ namespace weapons.Silk
         public Camera mainCam;
         public bool isSilkActive;
         public bool isLineMax;
+        public bool isLineLimit;
         private Vector2 mousePos;
         private float mouseDisX;
         private float mouseDisY;
@@ -72,6 +73,8 @@ namespace weapons.Silk
                 {
                     if (isAttach)
                     {
+                        isLineLimit = Vector2.Distance(transform.position, silk.position) > 9f;
+                        if (isLineLimit) transform.position = Vector3.Lerp(transform.position, silk.position, 0.01f);
                         if (Input.GetMouseButtonUp(1))
                         {
                             isAttach = false;
