@@ -1,141 +1,142 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Windows;
 
-public class TalkManager : MonoBehaviour
+namespace Talk
 {
-    public static TalkManager instance;
-    [SerializeField] private GameObject[] talkers = new GameObject[10];
-    private readonly TalkersName[] instanceTalkers = new TalkersName[10];
-    private readonly GameObject[] talkerOnScene = new GameObject[3];
-    private bool playingCheck = false;
-    private int lineLength;
-    private string[] lines;
-    private int progress;
-    private InsertPositions focusedTalkerTemp;
-    [SerializeField] private float typingTime;
-    [SerializeField] private TextMeshProUGUI talkTextUI;
-
-    public void GoTalk(string textPath)
+    public class TalkManager : MonoBehaviour
     {
-        var fileInfo = new FileInfo(textPath);
-        var value = "";
-        progress = 0;
-        if (fileInfo.Exists)
+        public static TalkManager instance;
+        [SerializeField] private GameObject[] talkers = new GameObject[10];
+        private readonly TalkersName[] instanceTalkers = new TalkersName[10];
+        private readonly GameObject[] talkerOnScene = new GameObject[3];
+        private bool playingCheck;
+        private int lineLength;
+        private string[] lines;
+        private int progress;
+        private InsertPositions focusedTalkerTemp;
+        [SerializeField] private float typingTime;
+        [SerializeField] private TextMeshProUGUI talkTextUI;
+
+        public void GoTalk(string textPath)
         {
-            var reader = new StreamReader(textPath);
-            value = reader.ReadToEnd();
-            reader.Close();
+            var fileInfo = new FileInfo(textPath);
+            string value;
+            progress = 0;
+            if (fileInfo.Exists)
+            {
+                var reader = new StreamReader(textPath);
+                value = reader.ReadToEnd();
+                reader.Close();
+            }
+
+            else
+                value = textPath;
+
+            TalkSetting(value);
         }
 
-        else
-            value = textPath;
-
-        TalkSetting(value);
-    }
-
-    private void TalkSetting(string texts)
-    {
-        texts = texts.Replace("\n", "");
-        texts = texts.Split("*/")[1];
-        var textInfo = texts.Split("--info End--")[0];
-        texts = texts.Split("--info End--")[1];
-        var textInfos = textInfo.Split("|");
-        lineLength = int.Parse(textInfos[0].Split(":")[1]);
-        int index = 0;
-        foreach (var i in textInfos[1].Split("_"))
+        private void TalkSetting(string texts)
         {
-            Enum.TryParse(i.Split(":")[1],true, out instanceTalkers[index++]);
+            texts = texts.Replace("\n", "");
+            texts = texts.Split("*/")[1];
+            var textInfo = texts.Split("--info End--")[0];
+            texts = texts.Split("--info End--")[1];
+            var textInfos = textInfo.Split("|");
+            lineLength = int.Parse(textInfos[0].Split(":")[1]);
+            int index = 0;
+            foreach (var i in textInfos[1].Split("_"))
+            {
+                Enum.TryParse(i.Split(":")[1],true, out instanceTalkers[index++]);
+            }
+            lines = texts.Split("|");
         }
-        lines = texts.Split("|");
-    }
-    private enum TalkersName
-    {
-        defaultMan
-    }
-    private IEnumerator playCoroutine;
-    public void ClickButton()
-    {
-        if (!playingCheck)
+        private enum TalkersName
         {
-            progress++;
-            if (lines[progress].Equals("exit"))
+            DefaultMan
+        }
+        private IEnumerator playCoroutine;
+        public void ClickButton()
+        {
+            if (!playingCheck)
             {
-                TalkEndFlow();
-                return;
-            }//exit
-            if (lines[progress].Contains("insert"))
-            {
-                var pos =Enum.Parse<InsertPositions>(lines[progress].Split("-")[2]);
-                if(talkerOnScene[(int)pos] is not null)
-                    GetDown(pos);
-                Insert(pos,talkers[int.Parse(lines[progress].Split("-")[1])]);
                 progress++;
-            }//insert-괴조-Right
+                if (lines[progress].Equals("exit"))
+                {
+                    TalkEndFlow();
+                    return;
+                }//exit
+                if (lines[progress].Contains("insert"))
+                {
+                    var pos =Enum.Parse<InsertPositions>(lines[progress].Split("-")[2]);
+                    if(talkerOnScene[(int)pos] is not null)
+                        GetDown(pos);
+                    Insert(pos,talkers[int.Parse(lines[progress].Split("-")[1])]);
+                    progress++;
+                }//insert-괴조-Right
 
-            if (lines[progress].Contains("focus"))
-            {
-                var pos =Enum.Parse<InsertPositions>(lines[progress].Split("-")[1]);
-                if(talkerOnScene[(int)pos] is not null)
-                    focus(pos);
-                progress++;
-            }//focus-Right
-            var text = lines[progress].Split(":")[1];
-            playCoroutine = TypingText(text);
+                if (lines[progress].Contains("focus"))
+                {
+                    var pos =Enum.Parse<InsertPositions>(lines[progress].Split("-")[1]);
+                    if(talkerOnScene[(int)pos] is not null)
+                        Focus(pos);
+                    progress++;
+                }//focus-Right
+                var text = lines[progress].Split(":")[1];
+                playCoroutine = TypingText(text);
             
-            StartCoroutine(playCoroutine);
-        }
-        else
-        {
-            if (playCoroutine is null) return;
-            StopCoroutine(playCoroutine);
-            talkTextUI.text = lines[progress];
-        }
+                StartCoroutine(playCoroutine);
+            }
+            else
+            {
+                if (playCoroutine is null) return;
+                StopCoroutine(playCoroutine);
+                talkTextUI.text = lines[progress];
+            }
         
-    }
-    
-    private IEnumerator TypingText(string text)
-    {
-        playingCheck = false;
-        for (var i = 0; i < text.Length + 1; i++)
-        {
-            var pageText = text[..i];
-            talkTextUI.text = pageText;
-            yield return new WaitForSeconds(typingTime);
         }
-        playingCheck = false;
-    }
+    
+        private IEnumerator TypingText(string text)
+        {
+            playingCheck = false;
+            for (var i = 0; i < text.Length + 1; i++)
+            {
+                var pageText = text[..i];
+                talkTextUI.text = pageText;
+                yield return new WaitForSeconds(typingTime);
+            }
+            playingCheck = false;
+        }
 
-    private enum InsertPositions
-    {
-        Left,
-        Center,
-        Right
-    }
+        private enum InsertPositions
+        {
+            Left,
+            Center,
+            Right
+        }
 
-    private void Insert(InsertPositions pos, GameObject insertThing)
-    {
-        talkerOnScene[(int)pos] = insertThing;
-        insertThing.SetActive(true);
-        insertThing.GetComponent<Animator>().Play("GGalanghan Insert ANimation BRo;");
-    }
+        private void Insert(InsertPositions pos, GameObject insertThing)
+        {
+            talkerOnScene[(int)pos] = insertThing;
+            insertThing.SetActive(true);
+            insertThing.GetComponent<Animator>().Play("GGalanghan Insert ANimation BRo;");
+        }
 
-    private void GetDown(InsertPositions pos)
-    {
-        talkerOnScene[(int)pos].GetComponent<Animator>().Play("fuckingGetDownBRO;;;;;;;;;;");
-        talkerOnScene[(int)pos] = null;
-    }
+        private void GetDown(InsertPositions pos)
+        {
+            talkerOnScene[(int)pos].GetComponent<Animator>().Play("fuckingGetDownBRO;;;;;;;;;;");
+            talkerOnScene[(int)pos] = null;
+        }
 
-    private void focus(InsertPositions pos)
-    {
-        talkerOnScene[(int)pos].GetComponent<Animator>().Play("focus");
-    }
-    private void TalkEndFlow()
-    {
-        //다끄기
+        private void Focus(InsertPositions pos)
+        {
+            talkerOnScene[(int)pos].GetComponent<Animator>().Play("focus");
+        }
+        private void TalkEndFlow()
+        {
+            //다끄기
+        }
     }
 }
