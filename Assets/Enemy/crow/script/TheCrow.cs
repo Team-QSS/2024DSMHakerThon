@@ -23,7 +23,7 @@ namespace Enemy.crow.script
             }
             else
             {
-                moveSpeed = Random.Range(4, 10);
+                moveSpeed = Random.Range(5, 13);
                 gameObject.transform.position =
                     Vector3.MoveTowards(gameObject.transform.position, newPosX, moveSpeed*Time.deltaTime);
             }
