@@ -19254,7 +19254,7 @@ GameObject:
   - component: {fileID: 1940936042}
   - component: {fileID: 1940936043}
   m_Layer: 0
-  m_Name: Pyke
+  m_Name: Silk
   m_TagString: Pyke
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19391,7 +19391,7 @@ MonoBehaviour:
   joint2D: {fileID: 1940936043}
   stopPos: {x: 0, y: 0}
   isBlocked: 0
-  excutePos: {x: 0, y: 0}
+  executePos: {x: 0, y: 0}
   isGraped: 0
   particle: {fileID: 25701617}
 --- !u!61 &1940936042
@@ -19804,6 +19804,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1271587018}
     - target: {fileID: 8382595554404734475, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
+      propertyPath: unlockDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382595554404734475, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
       propertyPath: unlockdash
       value: 1
       objectReference: {fileID: 0}
@@ -19819,6 +19823,14 @@ PrefabInstance:
       propertyPath: line
       value: 
       objectReference: {fileID: 1264100999}
+    - target: {fileID: 8845866000070247548, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
+      propertyPath: silk
+      value: 
+      objectReference: {fileID: 1940936040}
+    - target: {fileID: 8845866000070247548, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 8845866000070247548, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
       propertyPath: maincam
       value: 

@@ -1,23 +1,23 @@
 using UnityEngine;
 
-namespace wepons.Pyke
+namespace weapons.Silk
 {
-    public class Pyking : MonoBehaviour
+    public class SilkThrow : MonoBehaviour
     {
-        private Pkye pyking;
+        private Silk silkThrow;
         public SpringJoint2D joint2D;
         public Vector2 stopPos;
         public bool isBlocked;
-        public Vector2 excutePos;
+        public Vector2 executePos;
         public bool isGraped;
         public GameObject particle;
         // Start is called before the first frame update
         private void Start()
         {
-            pyking = GameObject.Find("player").GetComponent<Pkye>();
+            silkThrow = GameObject.Find("player").GetComponent<weapons.Silk.Silk>();
             joint2D = GetComponent<SpringJoint2D>();
             stopPos = Vector2.zero;
-            excutePos = Vector2.zero;
+            executePos = Vector2.zero;
             isBlocked = false;
             isGraped = false;
         }
@@ -27,7 +27,7 @@ namespace wepons.Pyke
             if (collision.CompareTag("wall"))
             {
                 joint2D.enabled = true;
-                pyking.isAttach = true;
+                silkThrow.isAttach = true;
                 isBlocked = true;
                 stopPos = gameObject.transform.position;
                 Destroy(Instantiate(particle, gameObject.transform.position, Quaternion.Euler(0, 0, 0)),2f);
@@ -36,7 +36,7 @@ namespace wepons.Pyke
             {
                 joint2D.enabled = true;
                 isGraped = true;
-                excutePos = gameObject.transform.position;
+                executePos = gameObject.transform.position;
             }
         }
 

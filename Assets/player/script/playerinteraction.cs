@@ -1,72 +1,70 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class playerinteraction : MonoBehaviour
+namespace player.script
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private LayerMask specailItem;
-    [SerializeField] private LayerMask npc;
-    [SerializeField] private Transform nearItem;
-    [SerializeField] private GameObject dialoguemanager;
-    public static playerinteraction pi;
-    public bool interaction;
-    public bool interactionwithnpc;
-    private float tempspeed;
-    private float tempjump;
-    private playermove speedmanager;
-    // Start is called before the first frame update
-    void Start()
+    public class Playerinteraction : MonoBehaviour
     {
-        speedmanager = player.GetComponent<playermove>();
-        interaction = false;
-        interactionwithnpc = false;
-        tempspeed = speedmanager.speed;
-        tempjump = speedmanager.jumpingPower;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // interaction = (nearItem.position - transform.position).sqrMagnitude <= 4f);
-        interaction = Physics2D.OverlapCircle(nearItem.position, 0.5f, specailItem);
-        interactionwithnpc = Physics2D.OverlapCircle(nearItem.position, 0.5f, npc);
-        if (Input.GetKeyDown(KeyCode.F))
+        [SerializeField] private GameObject player;
+        [SerializeField] private LayerMask specialItem;
+        [SerializeField] private LayerMask npc;
+        [SerializeField] private Transform nearItem;
+        [SerializeField] private GameObject dialogueManager;
+        public static Playerinteraction pi;
+        public bool interaction;
+        public bool interactionWithNpc;
+        private float tempSpeed;
+        private float tempJump;
+        private PlayerMove speedManager;
+        // Start is called before the first frame update
+        private void Start()
         {
-            if (interaction)
-            {
-                speedmanager.speed = 0;
-                speedmanager.jumpingPower = 0;
-                Invoke("Endwaiting",2.0f);
-            }
-
+            speedManager = player.GetComponent<PlayerMove>();
+            interaction = false;
+            interactionWithNpc = false;
+            tempSpeed = speedManager.speed;
+            tempJump = speedManager.jumpingPower;
         }
-        if (interactionwithnpc)
+
+        // Update is called once per frame
+        private void Update()
         {
+            // interaction = (nearItem.position - transform.position).sqrMagnitude <= 4f);
+            interaction = Physics2D.OverlapCircle(nearItem.position, 0.5f, specialItem);
+            interactionWithNpc = Physics2D.OverlapCircle(nearItem.position, 0.5f, npc);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                speedmanager.speed = 0;
-                speedmanager.jumpingPower = 0; 
+                if (interaction)
+                {
+                    speedManager.speed = 0;
+                    speedManager.jumpingPower = 0;
+                    Invoke(nameof(EndWaiting),2.0f);
+                }
+
             }
-            else
+            if (interactionWithNpc)
             {
-                speedmanager.speed = 0;
-                speedmanager.jumpingPower = 0;  
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    speedManager.speed = 0;
+                    speedManager.jumpingPower = 0; 
+                }
+                else
+                {
+                    speedManager.speed = 0;
+                    speedManager.jumpingPower = 0;  
+                }
             }
-        }
         
-         if (Physics2D.OverlapCircle(nearItem.position, 2f, specailItem))
+            if (Physics2D.OverlapCircle(nearItem.position, 2f, specialItem))
+            {
+                interaction = true;
+            } 
+        }
+
+        private void EndWaiting()
         {
-            interaction = true;
-        } 
+            speedManager.speed = tempSpeed;
+            speedManager.jumpingPower = tempJump;
+        }
     }
-
-    private void Endwaiting()
-    {
-        speedmanager.speed = tempspeed;
-        speedmanager.jumpingPower = tempjump;
-    }
-
-    
 }

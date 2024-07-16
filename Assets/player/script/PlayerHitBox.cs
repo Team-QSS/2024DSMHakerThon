@@ -1,43 +1,43 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerHitBox : MonoBehaviour
+namespace player.script
 {
-    [SerializeField] private GameObject Player;
-    private playermove playerMove;
-
-    private void Start()
+    public class PlayerHitBox : MonoBehaviour
     {
-        playerMove = Player.GetComponent<playermove>();
-    }
+        [SerializeField] private GameObject player;
+        private PlayerMove playerMove;
+
+        private void Start()
+        {
+            playerMove = player.GetComponent<PlayerMove>();
+        }
     
 
-    public void NockBack(Vector3 enemyPos,float power,float time)
-    {
+        public void NockBack(Vector3 enemyPos,float power,float time)
+        {
    
-        if (gameObject.transform.position.x - enemyPos.x < 0)
-        {
-            playerMove.isstuned = true;    
-            playerMove.NockLeft(power);
-            StartCoroutine(NockBackFlow(time));
+            if (gameObject.transform.position.x - enemyPos.x < 0)
+            {
+                playerMove.stunned = true;    
+                playerMove.NockLeft(power);
+                StartCoroutine(NockBackFlow(time));
 
-        }
-        else
-        {
-            playerMove.isstuned = true;
-            playerMove.NockRight(power);
-            StartCoroutine(NockBackFlow(time));
-        }
+            }
+            else
+            {
+                playerMove.stunned = true;
+                playerMove.NockRight(power);
+                StartCoroutine(NockBackFlow(time));
+            }
         
-    }
+        }
 
-    IEnumerator NockBackFlow(float time)
-    {
-        yield return new WaitForSeconds(time);
-        playerMove.isstuned = false;
-    }
+        private IEnumerator NockBackFlow(float time)
+        {
+            yield return new WaitForSeconds(time);
+            playerMove.stunned = false;
+        }
     
+    }
 }
