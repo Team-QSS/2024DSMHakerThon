@@ -28,9 +28,9 @@ public class Mentis : MonoBehaviour
         newPosX= new Vector3(target.transform.position.x,-0.2f, 0);
         if (Physics2D.OverlapCircle(attackrange.transform.position, 0.7f, playerCheck))
         {
-            mentisAnim.SetBool("isidling",false);
-            mentisAnim.SetBool("iswalking",false);    
-            mentisAnim.SetTrigger("isattacking");
+            mentisAnim.SetBool("isidling",false);                                                                   
+            mentisAnim.SetBool("iswalking",false);
+            mentisAnim.SetBool("isattacking",true);
         }
         else
         { 
@@ -44,12 +44,14 @@ public class Mentis : MonoBehaviour
                 gameObject.transform.position =                                                                        
                     Vector3.MoveTowards(gameObject.transform.position, newPosX, 2*Time.deltaTime);                     
                 mentisAnim.SetBool("isidling",false);                                                                  
-                mentisAnim.SetBool("iswalking",true);                                                                  
+                mentisAnim.SetBool("iswalking",true);
+                mentisAnim.SetBool("isattacking",false); 
             }                                                                                                          
             else                                                                                                       
             {                                                                                                          
                 mentisAnim.SetBool("isidling",true);                                                                   
-                mentisAnim.SetBool("iswalking",false);                                                                 
+                mentisAnim.SetBool("iswalking",false);
+                mentisAnim.SetBool("isattacking",false);
             }                                                                                                          
         }                                                                                                              
         else                                                                                                           
