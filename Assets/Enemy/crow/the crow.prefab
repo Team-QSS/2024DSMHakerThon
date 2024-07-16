@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6736109445387563988}
   - component: {fileID: 8632719945670782443}
   - component: {fileID: 4399664350867835067}
+  - component: {fileID: 2321530196043592123}
   m_Layer: 0
   m_Name: the crow
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 383613870524031246}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.2095345, w: 0.97780126}
-  m_LocalPosition: {x: -8.29624, y: 2.3238924, z: 0}
+  m_LocalPosition: {x: -8.29624, y: 2.323892, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112,6 +113,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2321530196043592123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383613870524031246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56346abb2ddd3f446bafb9654452008d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &686149843989951924
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +137,7 @@ GameObject:
   - component: {fileID: 6582792814952481210}
   m_Layer: 0
   m_Name: tailtip4
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +221,7 @@ GameObject:
   - component: {fileID: 1109768213690754671}
   m_Layer: 0
   m_Name: f3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,7 +305,7 @@ GameObject:
   - component: {fileID: 2986376656755896827}
   m_Layer: 0
   m_Name: toe2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,7 +389,7 @@ GameObject:
   - component: {fileID: 6503103845464938888}
   m_Layer: 0
   m_Name: toe3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,7 +473,7 @@ GameObject:
   - component: {fileID: 1344080600021773687}
   m_Layer: 0
   m_Name: wing (1)
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,7 +558,7 @@ GameObject:
   - component: {fileID: 2691662814662487869}
   m_Layer: 0
   m_Name: upperhead
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,7 +642,7 @@ GameObject:
   - component: {fileID: 6166955133945024811}
   m_Layer: 0
   m_Name: feathers
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -654,6 +667,88 @@ Transform:
   - {fileID: 8194508834950198716}
   m_Father: {fileID: 8239612513555013594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -33.244}
+--- !u!1 &2083071670883772649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8304277202367339450}
+  - component: {fileID: 4845842234693888248}
+  m_Layer: 0
+  m_Name: Light 2D
+  m_TagString: crow
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8304277202367339450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083071670883772649}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.20208046, w: 0.9793689}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6632585363676974468}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4845842234693888248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083071670883772649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0.32292208
+  m_PointLightOuterRadius: 0.851698
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &2186883322479381227
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +761,7 @@ GameObject:
   - component: {fileID: 4641196456086226466}
   m_Layer: 0
   m_Name: f1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -750,7 +845,7 @@ GameObject:
   - component: {fileID: 10938643972584449}
   m_Layer: 0
   m_Name: f2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -834,7 +929,7 @@ GameObject:
   - component: {fileID: 2775235684347087025}
   m_Layer: 0
   m_Name: f5
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -918,7 +1013,7 @@ GameObject:
   - component: {fileID: 2332895713241750239}
   m_Layer: 0
   m_Name: wing
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1002,7 +1097,7 @@ GameObject:
   - component: {fileID: 8240279931450284863}
   m_Layer: 0
   m_Name: feathers
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,7 +1134,7 @@ GameObject:
   - component: {fileID: 3070499898300861954}
   m_Layer: 0
   m_Name: wingtip
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1123,7 +1218,7 @@ GameObject:
   - component: {fileID: 5655579473165844425}
   m_Layer: 0
   m_Name: feet
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1158,11 +1253,11 @@ GameObject:
   - component: {fileID: 2386834832191519732}
   m_Layer: 0
   m_Name: eye
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6632585363676974468
 Transform:
   m_ObjectHideFlags: 0
@@ -1175,7 +1270,8 @@ Transform:
   m_LocalPosition: {x: -0.069, y: 0.045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8304277202367339450}
   m_Father: {fileID: 626012206969016561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &2386834832191519732
@@ -1219,7 +1315,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -1303,7 +1399,7 @@ GameObject:
   - component: {fileID: 5952325977798181151}
   m_Layer: 0
   m_Name: tailtip2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1387,7 +1483,7 @@ GameObject:
   - component: {fileID: 6041618060138666568}
   m_Layer: 0
   m_Name: leg2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1472,7 +1568,7 @@ GameObject:
   - component: {fileID: 5261157420099436825}
   m_Layer: 0
   m_Name: tailtip3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1556,7 +1652,7 @@ GameObject:
   - component: {fileID: 9189960663209321908}
   m_Layer: 0
   m_Name: toe1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1639,7 +1735,7 @@ GameObject:
   - component: {fileID: 7548300607522160062}
   m_Layer: 0
   m_Name: feet (1)
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1674,7 +1770,7 @@ GameObject:
   - component: {fileID: 6530954952918668560}
   m_Layer: 0
   m_Name: neck1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1759,7 +1855,7 @@ GameObject:
   - component: {fileID: 2163898534632693894}
   m_Layer: 0
   m_Name: leg3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1844,7 +1940,7 @@ GameObject:
   - component: {fileID: 2172456855722217557}
   m_Layer: 0
   m_Name: toe1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1928,7 +2024,7 @@ GameObject:
   - component: {fileID: 2284817358788479853}
   m_Layer: 0
   m_Name: leg3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2013,7 +2109,7 @@ GameObject:
   - component: {fileID: 941195437382968007}
   m_Layer: 0
   m_Name: jaw
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2097,7 +2193,7 @@ GameObject:
   - component: {fileID: 2584717831196150721}
   m_Layer: 0
   m_Name: f5
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2181,7 +2277,7 @@ GameObject:
   - component: {fileID: 1772462835002801081}
   m_Layer: 0
   m_Name: f2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2265,7 +2361,7 @@ GameObject:
   - component: {fileID: 9028377741067978691}
   m_Layer: 0
   m_Name: toe2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2349,7 +2445,7 @@ GameObject:
   - component: {fileID: 1733922045044239285}
   m_Layer: 0
   m_Name: tail1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2437,7 +2533,7 @@ GameObject:
   - component: {fileID: 3369309936962356858}
   m_Layer: 0
   m_Name: leg2
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2522,7 +2618,7 @@ GameObject:
   - component: {fileID: 6631446329130225310}
   m_Layer: 0
   m_Name: toe3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2603,9 +2699,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5411562915523908778}
+  - component: {fileID: 1375074195299780019}
+  - component: {fileID: 5913673964054576588}
   m_Layer: 0
   m_Name: head
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2618,15 +2716,72 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6764896754146089591}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.015926946, w: 0.9998732}
-  m_LocalPosition: {x: 1.08, y: -0.29, z: -0.04688494}
+  m_LocalRotation: {x: -0, y: -0, z: -0.022783399, w: 0.9997405}
+  m_LocalPosition: {x: 1.0663195, y: -0.28604892, z: -0.04688494}
   m_LocalScale: {x: 1.4285716, y: 0.8928572, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 626012206969016561}
   - {fileID: 1551895723710266350}
   m_Father: {fileID: 7921137681173839645}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.611}
+--- !u!61 &1375074195299780019
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764896754146089591}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.7104919, y: 0.40008402}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4209838, y: 4.462655}
+  m_EdgeRadius: 0
+--- !u!114 &5913673964054576588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764896754146089591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73fa7c075fa6a9c4c9c0644582db4861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6803215407463409385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,7 +2794,7 @@ GameObject:
   - component: {fileID: 6485573648169656857}
   m_Layer: 0
   m_Name: tailtip1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2723,7 +2878,7 @@ GameObject:
   - component: {fileID: 6784783372391755680}
   m_Layer: 0
   m_Name: leg1 (1)
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2808,7 +2963,7 @@ GameObject:
   - component: {fileID: 2603303346647872939}
   m_Layer: 0
   m_Name: leg1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2893,7 +3048,7 @@ GameObject:
   - component: {fileID: 3148244736819570160}
   m_Layer: 0
   m_Name: f4
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2977,7 +3132,7 @@ GameObject:
   - component: {fileID: 6991333812822104750}
   m_Layer: 0
   m_Name: wingtip
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3062,7 +3217,7 @@ GameObject:
   - component: {fileID: 9055384857978514016}
   m_Layer: 0
   m_Name: f1
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3146,7 +3301,7 @@ GameObject:
   - component: {fileID: 250372208237235321}
   m_Layer: 0
   m_Name: f4
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3230,7 +3385,7 @@ GameObject:
   - component: {fileID: 8292556912010527570}
   m_Layer: 0
   m_Name: f3
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

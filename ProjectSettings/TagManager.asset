@@ -8,6 +8,8 @@ TagManager:
   - wall
   - enemy
   - Pyke
+  - crow
+  - Barrier
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - enemy
   - enemyattack
   - player
-  - 
+  - Barrier
   - 
   - 
   - 
