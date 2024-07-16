@@ -8,6 +8,7 @@ TagManager:
   - wall
   - enemy
   - Pyke
+  - crow
   layers:
   - Default
   - TransparentFX
