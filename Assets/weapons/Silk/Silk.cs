@@ -35,8 +35,8 @@ namespace weapons.Silk
             if (Input.GetMouseButtonDown(1) && !isSilkActive)
             {
                 silk.position = transform.position;
-                mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+                mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)) - transform.position;
                 isSilkActive = true;
                 isLineMax = false;
                 silk.gameObject.SetActive(true);
