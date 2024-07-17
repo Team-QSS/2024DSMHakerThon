@@ -35,7 +35,7 @@ namespace weapons.Silk
         {
             playerMove = gameObject.GetComponent<PlayerMove>();
             line.positionCount = 2;
-            line.endWidth = line.startWidth = 0.2f;
+            line.endWidth = line.startWidth = 0.13f;
             line.SetPosition(0,transform.position);
             line.SetPosition(1,silk.position);
             line.useWorldSpace = true;
