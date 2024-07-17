@@ -25,15 +25,13 @@ public class PlayerInteract : MonoBehaviour
         {
             if (raycast.collider.gameObject.CompareTag("Interactive"))
             {
-                Debug.Log("hello");
                 if (raycast.collider.GetComponent<InteractAbleItem>().canActive)
                 {
-                    Debug.Log("itis canactive");
                     interact.InteractOnHere(gameObject.transform.position);
                     if (Input.GetKey(KeyCode.F))
                     { 
-                        Debug.Log("yammy");
                         raycast.collider.gameObject.GetComponent<InteractAbleItem>().Interact();
+                        interact.InteractOut();
                     }
                      
                 }
