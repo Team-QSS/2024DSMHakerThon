@@ -9,7 +9,7 @@ namespace Talk
 {
     public class TalkManager : MonoBehaviour
     {
-        public static TalkManager instance;
+        private static TalkManager _instance;
         [SerializeField] private Sprite[] talkers = new Sprite[10];
         private static readonly TalkersName[] InstanceTalkers = new TalkersName[10];
         [SerializeField] private GameObject[] talkerOnScene = new GameObject[3];
@@ -24,6 +24,7 @@ namespace Talk
 
         private void Awake()
         {
+            _instance = this;
             talkTextUI = talkTextPanel.GetComponentInChildren<TextMeshProUGUI>();
             talkerOnScene[0].SetActive(false);
             talkerOnScene[1].SetActive(false);
@@ -31,6 +32,11 @@ namespace Talk
             talkTextPanel.SetActive(false);
         }
 
+        public static TalkManager GetInstance()
+        {
+            return _instance;
+        }
+        
         public void GoTalk(string textPath)
         {
             var fileInfo = new FileInfo(textPath);
