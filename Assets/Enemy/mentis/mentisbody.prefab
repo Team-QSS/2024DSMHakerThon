@@ -52,7 +52,7 @@ MonoBehaviour:
   target: {fileID: 6049932543393177092, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
   mentisAnim: {fileID: 9175642384276596546}
   attackRange: {fileID: 9087808776096491408}
-  recognitionrange: {fileID: 7003160007322802975}
+  recognitionRange: {fileID: 7003160007322802975}
   playerCheck:
     serializedVersion: 2
     m_Bits: 4096
