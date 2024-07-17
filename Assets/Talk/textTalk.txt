@@ -1,0 +1,26 @@
+/*
+You can insert this Characters...
+	Sanabang,
+    Crow,
+    Spider,
+    Mantis,
+    Developer,
+    JhGhost,
+    Sans,
+    Whitefish
+*/
+--Character Info--
+Sans,
+Whitefish,
+Developer
+--info End--
+insert-Developer-Right
+|안녕 나는 Developer
+|disFocus
+|insert-Sans-Left
+|안녕 나는 Sans
+|out-Right
+|이런, 가 버렸네
+|out-Left
+|그리고 아무도 없었다~
+|exit
