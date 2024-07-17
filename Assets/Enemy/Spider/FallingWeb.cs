@@ -10,12 +10,14 @@ namespace Enemy.Spider
         {
             if(collision.CompareTag("wall"))
             {
+                WebSummoner.Objects.Enqueue(gameObject);
+                gameObject.SetActive(false);
                 Destroy(Instantiate(effect, transform.position, Quaternion.Euler(0, 0, 0)),1f);
-                Destroy(gameObject);
             }
             if (!collision.CompareTag("Barrier")) return;
+            WebSummoner.Objects.Enqueue(gameObject);
+            gameObject.SetActive(false);
             Destroy(Instantiate(effect, transform.position, Quaternion.Euler(0, 0, 0)),1f);
-            Destroy(gameObject);
         }
     }
 }
