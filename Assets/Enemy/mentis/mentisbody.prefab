@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 1587898713423988685}
   - {fileID: 7841954957431659166}
+  - {fileID: 1137923588086491868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4813055058946326227
@@ -51,6 +52,7 @@ MonoBehaviour:
   target: {fileID: 6049932543393177092, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
   mentisAnim: {fileID: 9175642384276596546}
   attackrange: {fileID: 9087808776096491408}
+  recognitionrange: {fileID: 7003160007322802975}
   playerCheck:
     serializedVersion: 2
     m_Bits: 4096
@@ -126,6 +128,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.71364975, y: 0.58426964}
   m_EdgeRadius: 0
+--- !u!1 &7003160007322802975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137923588086491868}
+  m_Layer: 0
+  m_Name: recognitionrange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1137923588086491868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003160007322802975}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.273, y: 0.572, z: -0.21660486}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4106594584536771797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9087808776096491408
 GameObject:
   m_ObjectHideFlags: 0
