@@ -7,6 +7,8 @@ namespace weapons.Silk
     {
         public LineRenderer line;
         public Transform silk;
+        
+        
 
         private Vector2 mouseDir;
         public Camera mainCam;
@@ -16,6 +18,8 @@ namespace weapons.Silk
         private Vector2 mousePos;
         private float mouseDisX;
         private float mouseDisY;
+        public float silkGauge = 6;
+        
 
         public bool isAttach;
         // Start is called before the first frame update
@@ -26,6 +30,7 @@ namespace weapons.Silk
             line.SetPosition(0,transform.position);
             line.SetPosition(1,silk.position);
             line.useWorldSpace = true;
+            
         }
 
         // Update is called once per frame
@@ -41,7 +46,6 @@ namespace weapons.Silk
                 isSilkActive = true;
                 isLineMax = false;
                 silk.gameObject.SetActive(true);
-
             }
 
             switch (isSilkActive)
@@ -109,5 +113,7 @@ namespace weapons.Silk
             silk.GetComponent<SilkThrow>().joint2D.enabled = false;
             silk.gameObject.SetActive(false);
         }
+
+        
     }
 }
