@@ -12,6 +12,7 @@ namespace weapons.Silk
         public Camera mainCam;
         public bool isSilkActive;
         public bool isLineMax;
+        public bool isLineLimit;
         private Vector2 mousePos;
         private float mouseDisX;
         private float mouseDisY;
@@ -35,8 +36,8 @@ namespace weapons.Silk
             if (Input.GetMouseButtonDown(1) && !isSilkActive)
             {
                 silk.position = transform.position;
-                mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+                mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)) - transform.position;
                 isSilkActive = true;
                 isLineMax = false;
                 silk.gameObject.SetActive(true);
@@ -72,6 +73,8 @@ namespace weapons.Silk
                 {
                     if (isAttach)
                     {
+                        isLineLimit = Vector2.Distance(transform.position, silk.position) > 9f;
+                        if (isLineLimit) transform.position = Vector3.Lerp(transform.position, silk.position, 0.01f);
                         if (Input.GetMouseButtonUp(1))
                         {
                             isAttach = false;
