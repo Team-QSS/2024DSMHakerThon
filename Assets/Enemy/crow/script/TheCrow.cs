@@ -19,28 +19,16 @@ namespace Enemy.crow.script
             
             if (behavior > 890)
             {
-                if (Mathf.Abs(gameObject.transform.position.x - newPosX.x) < 19)
-                {
-                    crowAnim.SetTrigger(IsBiting);
-                    gameObject.transform.position =
-                        Vector3.MoveTowards(gameObject.transform.position, newPosX, 8*Time.deltaTime);
-                }
-
+                if (!(Mathf.Abs(gameObject.transform.position.x - newPosX.x) < 19)) return;
+                crowAnim.SetTrigger(IsBiting);
+                gameObject.transform.position =
+                    Vector3.MoveTowards(gameObject.transform.position, newPosX, 8*Time.deltaTime);
             }
             else
             {
-                if (Mathf.Abs(gameObject.transform.position.x - newPosX.x) > 18)
-                {
-                    moveSpeed = 40f;
-                }
-                else if(Mathf.Abs(gameObject.transform.position.x - newPosX.x) > 20)
-                {
-                    moveSpeed = 100f;
-                }
-                else
-                {
-                    moveSpeed = Random.Range(5, 13);
-                }
+                if (Mathf.Abs(gameObject.transform.position.x - newPosX.x) > 18) moveSpeed = 40f;
+                else if (Mathf.Abs(gameObject.transform.position.x - newPosX.x) > 20) moveSpeed = 100f;
+                else moveSpeed = Random.Range(5, 13);
 
                 gameObject.transform.position =
                     Vector3.MoveTowards(gameObject.transform.position, newPosX, moveSpeed*Time.deltaTime);

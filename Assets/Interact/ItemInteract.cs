@@ -1,34 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ItemInteract : MonoBehaviour
+namespace Interact
 {
-    public static ItemInteract Instance;
-    private TMP_Text textPanel;
-    public Camera cam;
-
-    private void Awake()
+    public class ItemInteract : MonoBehaviour
     {
-        textPanel = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
-        Instance = this;
-        gameObject.SetActive(false);
-    }
+        public static ItemInteract instance;
+        private TMP_Text textPanel;
+        public Camera cam;
 
-    public void ChangeText(string Text)
-    {
-        textPanel.text = Text;
-    }
+        private void Awake()
+        {
+            textPanel = gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
+            instance = this;
+            gameObject.SetActive(false);
+        }
 
-    public void InteractOnHere(Vector3 Position)
-    {
-        transform.position = cam.WorldToScreenPoint(Position + new Vector3(0,0,10f));
-        gameObject.SetActive(true);
-    }
+        public void ChangeText(string text)
+        {
+            textPanel.text = text;
+        }
 
-    public void InteractOut()
-    {
-        gameObject.SetActive(false);
+        public void InteractOnHere(Vector3 position)
+        {
+            transform.position = cam.WorldToScreenPoint(position + new Vector3(0,0,10f));
+            gameObject.SetActive(true);
+        }
+
+        public void InteractOut()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

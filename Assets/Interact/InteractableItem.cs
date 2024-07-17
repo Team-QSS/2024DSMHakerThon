@@ -1,27 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class InteractAbleItem : MonoBehaviour
+namespace Interact
 {
-    public UnityEvent onInteract;
-    public bool canActive = true;
-    public float InteractTrim;
-
-    public void Interact()
+    public class InteractAbleItem : MonoBehaviour
     {
-        if (canActive)
+        public UnityEvent onInteract;
+        public bool canActive = true;
+        public float interactTrim;
+
+        public void Interact()
         {
+            if (!canActive) return;
             onInteract.Invoke();
-            StartCoroutine(activeTimer());
+            StartCoroutine(ActiveTimer());
         }
-    }
 
-    IEnumerator activeTimer()
-    {
-        canActive = false;
-        yield return new WaitForSeconds(InteractTrim);
-        canActive = true;
+        private IEnumerator ActiveTimer()
+        {
+            canActive = false;
+            yield return new WaitForSeconds(interactTrim);
+            canActive = true;
+        }
     }
 }
