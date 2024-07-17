@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Dialogue;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TriggeringWithDia : MonoBehaviour
 {
-    [SerializeField] private string diatext;
+    [TextArea] public string diatext;
     [SerializeField] private Color color;
     [SerializeField] private float plainTime = 1f;
 

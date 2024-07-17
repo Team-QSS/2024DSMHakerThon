@@ -17,7 +17,7 @@ namespace Enemy.Spider
         {
             while (true)
             {
-                Instantiate(webObject, new Vector3(Random.Range(-105f, 35f), 480), webObject.transform.rotation);
+                Instantiate(webObject, new Vector3(Random.Range(-105f, 35f), gameObject.transform.position.y), webObject.transform.rotation);
                 yield return new WaitForSeconds(summonTime);
             }
         }
