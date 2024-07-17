@@ -5,7 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc0edd2d-edd2-438a-8427-5d2821607620" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SANABANG.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SANABANG.dir/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SANABANG/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 2.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 2.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/Prefebs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/Prefebs/Canvas.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/Prefebs/Canvas.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/Prefebs/Trigger.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/Prefebs/Trigger.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/Talker.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/Talker.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/disfocus.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/disfocus.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/focus.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/focus.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/insert.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/insert.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/out.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkerAnim/out.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkingButton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/TalkingButton.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/textTalk.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Talk/textTalk.txt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SANABANG/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SANABANG/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemy/crow/the crow.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemy/crow/the crow.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CrowChacing.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CrowChacing.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Talk/TalkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Talk/TalkManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/player/script/Ground 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/script/Ground 1.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,12 +46,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/weapons/Silk/SilkGaugeChange.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -31,33 +58,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+    "git-widget-placeholder": "Silk__Gauge 병합 중",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Unity.exe" />
-      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Personal folder\Unity Project\SANABANG&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
-      <option name="WORKING_DIRECTORY" value="C:\Personal folder\Unity Project\SANABANG" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unity 시작" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Unity.exe" />
-      <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Personal folder\Unity Project\SANABANG&quot; -debugCodeOptimization" />
-      <option name="WORKING_DIRECTORY" value="C:\Personal folder\Unity Project\SANABANG" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
@@ -67,12 +71,14 @@
       <option name="presentableId" value="Default" />
       <updated>1721132396242</updated>
       <workItem from="1721132400511" duration="10000" />
+      <workItem from="1721126203673" duration="1060000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
