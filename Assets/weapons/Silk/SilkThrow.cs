@@ -22,7 +22,7 @@ namespace weapons.Silk
         {
             playerMove = gameObject.GetComponent<PlayerMove>();
             silkThrow = GameObject.Find("player").GetComponent<Silk>();
-            for (int i = 0; i < particleInstanceCount; i++)
+            for (var i = 0; i < particleInstanceCount; i++)
             {
                 particlesQueue.Enqueue(Instantiate(particle));
             }

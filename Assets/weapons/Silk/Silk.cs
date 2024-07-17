@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using player.script;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace weapons.Silk
@@ -22,10 +22,10 @@ namespace weapons.Silk
         private float mouseDisX;
         private float mouseDisY;
         public int silkGauge = 6;
-        private bool filling = false;
+        private bool filling;
         [SerializeField] private GameObject[] silkGaugeObj;
         [SerializeField] private Sprite filled;
-        [SerializeField] private Sprite spended;
+        [FormerlySerializedAs("spended")] [SerializeField] private Sprite spent;
         private PlayerMove playerMove;
         
 
@@ -54,7 +54,7 @@ namespace weapons.Silk
                 isSilkActive = true;
                 isLineMax = false;
                 silk.gameObject.SetActive(true);
-                silkGaugeObj[silkGauge - 1].GetComponent<Image>().sprite = spended;
+                silkGaugeObj[silkGauge - 1].GetComponent<Image>().sprite = spent;
                 silkGauge--;
             }
             switch (isSilkActive)

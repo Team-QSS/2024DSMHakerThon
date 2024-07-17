@@ -37,12 +37,12 @@ namespace player.script
         private static readonly int IsJumping = Animator.StringToHash("isjumping");
         private static readonly int XVelocity = Animator.StringToHash("xVelocity");
 
-        public Silk Silk;
+        public Silk silk;
 
         // Start is called before the first frame update
         private void Start()
         {
-            Silk = gameObject.GetComponent<Silk>();
+            silk = gameObject.GetComponent<Silk>();
             playerAnim = GetComponent<Animator>();
             tr.emitting = false;
             stunned = false;
@@ -54,9 +54,9 @@ namespace player.script
 
             if ((IsGrounded() || IsOnPlatform()))
             {
-                if (Silk.silkGauge != 6)
+                if (silk.silkGauge != 6)
                 {
-                    Silk.Fill();
+                    silk.Fill();
                 }
                 if (Input.GetKeyDown(KeyCode.Space) && !Input.GetKey(KeyCode.S)) rb.velocity = new Vector2(rb.velocity.x,jumpingPower*2);
             }

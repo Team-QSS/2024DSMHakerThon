@@ -1,21 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Dialogue;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
-public class TriggeringWithDia : MonoBehaviour
+namespace Dialogue
 {
-    [TextArea] public string diatext;
-    [SerializeField] private Color color;
-    [SerializeField] private float plainTime = 1f;
+    public class TriggeringWithDia : MonoBehaviour
+    {
+        [FormerlySerializedAs("diatext")] [TextArea] public string diaText;
+        [SerializeField] private Color color;
+        [SerializeField] private float plainTime = 1f;
 
         private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
         {
-            DialogueManager.GetInstance().SetUpDialogue(diatext,transform.position,color,plainTime);
+            if (other.CompareTag("Player"))
+            {
+                DialogueManager.GetInstance().SetUpDialogue(diaText, transform.position, color, plainTime);
+            }
         }
     }
 }
