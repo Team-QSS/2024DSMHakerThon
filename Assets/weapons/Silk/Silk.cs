@@ -27,12 +27,14 @@ namespace weapons.Silk
         [SerializeField] private Sprite filled;
         [FormerlySerializedAs("spended")] [SerializeField] private Sprite spent;
         private PlayerMove playerMove;
+        private Rigidbody2D rb;
         
 
         public bool isAttach;
         // Start is called before the first frame update
         private void Start()
         {
+            rb = GetComponent<Rigidbody2D>();
             playerMove = gameObject.GetComponent<PlayerMove>();
             line.positionCount = 2;
             line.endWidth = line.startWidth = 0.13f;
@@ -87,7 +89,7 @@ namespace weapons.Silk
                     if (isAttach)
                     {
                         isLineLimit = Vector2.Distance(transform.position, silk.position) > 9f;
-                        if (isLineLimit) transform.position = Vector3.Lerp(transform.position, silk.position, 0.01f);
+                        if (isLineLimit) rb.position = Vector3.Lerp(transform.position, silk.position, 0.01f);
                         if (Input.GetMouseButtonUp(1))
                         {
                             isAttach = false;
