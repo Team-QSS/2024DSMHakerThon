@@ -43,7 +43,7 @@ namespace Dialogue
             target.a = 0;
             while (!(Mathf.Abs(t.color.a - target.a) < 0.02f))
             {
-                t.color = Color.Lerp(t.color, target, Time.deltaTime);
+                t.color = Color.Lerp(t.color, target, Time.deltaTime * 5);
                 yield return null;
             }
             t.gameObject.SetActive(false);
