@@ -69,15 +69,6 @@ namespace player.script
 
             if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash) StartCoroutine(Dash());
 
-            if (Input.GetKey(KeyCode.S)&&Input.GetKeyDown(KeyCode.Space))
-            {
-                if (IsOnPlatform())
-                {
-                    bcd2.isTrigger = true;
-                    Invoke(nameof(FallPlatform),0.5f);
-                }
-            }
-
             if (horizontal > 0 && !isFacingRight) Flip();
             if (horizontal < 0 && isFacingRight) Flip();
         }
