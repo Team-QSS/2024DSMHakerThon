@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
+using player.script;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace weapons.Silk
 {
@@ -7,6 +10,8 @@ namespace weapons.Silk
     {
         public LineRenderer line;
         public Transform silk;
+        
+        
 
         private Vector2 mouseDir;
         public Camera mainCam;
@@ -16,11 +21,19 @@ namespace weapons.Silk
         private Vector2 mousePos;
         private float mouseDisX;
         private float mouseDisY;
+        public int silkGauge = 6;
+        private bool filling = false;
+        [SerializeField] private GameObject[] silkGaugeObj;
+        [SerializeField] private Sprite filled;
+        [SerializeField] private Sprite spended;
+        private PlayerMove playerMove;
+        
 
         public bool isAttach;
         // Start is called before the first frame update
         private void Start()
         {
+            playerMove = gameObject.GetComponent<PlayerMove>();
             line.positionCount = 2;
             line.endWidth = line.startWidth = 0.2f;
             line.SetPosition(0,transform.position);
@@ -33,7 +46,7 @@ namespace weapons.Silk
         {
             line.SetPosition(0,transform.position);
             line.SetPosition(1,silk.position);
-            if (Input.GetMouseButtonDown(1) && !isSilkActive)
+            if (Input.GetMouseButtonDown(1) && !isSilkActive && silkGauge>0)
             {
                 silk.position = transform.position;
                 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
@@ -41,9 +54,9 @@ namespace weapons.Silk
                 isSilkActive = true;
                 isLineMax = false;
                 silk.gameObject.SetActive(true);
-
+                silkGaugeObj[silkGauge - 1].GetComponent<Image>().sprite = spended;
+                silkGauge--;
             }
-
             switch (isSilkActive)
             {
                 case true when !isLineMax:
@@ -91,6 +104,28 @@ namespace weapons.Silk
             if (!silk.gameObject.activeSelf) silk.gameObject.transform.position = gameObject.transform.position;
         }
 
+        public void Fill()
+        {
+            if (!filling)
+            {
+                StartCoroutine(Fill_IE());
+            }
+        }
+
+        private IEnumerator Fill_IE()
+        {
+            filling = true;
+            while (silkGauge != 6)
+            {
+                if(!playerMove.IsOnPlatform() && !playerMove.IsGrounded())
+                    break;
+                yield return new WaitForSeconds(0.5f);
+                silkGauge++;
+                silkGaugeObj[silkGauge-1].GetComponent<Image>().sprite = filled;
+            }
+
+            filling = false;
+        }
         private IEnumerator Execution()
         {
             isLineMax = true;
@@ -109,5 +144,7 @@ namespace weapons.Silk
             silk.GetComponent<SilkThrow>().joint2D.enabled = false;
             silk.gameObject.SetActive(false);
         }
+
+        
     }
 }

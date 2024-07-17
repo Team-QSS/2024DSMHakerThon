@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using player.script;
 using UnityEngine;
 
 namespace weapons.Silk
@@ -15,9 +16,11 @@ namespace weapons.Silk
         [SerializeField] private int particleInstanceCount;
         private readonly Queue<GameObject> particlesQueue = new();
         private readonly Queue<GameObject> parameterQueue = new();
+        private PlayerMove playerMove;
 
         private void Awake()
         {
+            playerMove = gameObject.GetComponent<PlayerMove>();
             silkThrow = GameObject.Find("player").GetComponent<Silk>();
             for (int i = 0; i < particleInstanceCount; i++)
             {
