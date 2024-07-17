@@ -7,7 +7,7 @@ namespace TitleSceneScripts
     {
         public void StartButton()
         {
-            SceneManager.LoadScene("IntroScene");
+            SceneManager.LoadScene("Stage1");
         }
         public void QuitButton()
         {
