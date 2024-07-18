@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using weapons.Silk;
 
 namespace player.script
@@ -33,6 +34,7 @@ namespace player.script
         public bool isJumping;
         public Vector3 nockBack;
         public bool stunned;
+        public static bool isPaused;
 
         private static readonly int IsJumping = Animator.StringToHash("isjumping");
         private static readonly int XVelocity = Animator.StringToHash("xVelocity");
@@ -51,13 +53,26 @@ namespace player.script
         private void Update()
         {
             if (!stunned) horizontal = Input.GetAxisRaw("Horizontal");
-
+            if (Input.GetKeyDown(KeyCode.Escape))
+                if (isPaused)
+                {
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene("TitleScene");
+                }
+                else
+                {
+                    isPaused = true;
+                    Time.timeScale = 0;
+                }
+            else if (Input.anyKeyDown)
+            {
+                isPaused = false;
+                Time.timeScale = 1;
+            }
+            
             if ((IsGrounded() || IsOnPlatform()))
             {
-                if (silk.silkGauge != 6)
-                {
-                    silk.Fill();
-                }
+                if (silk.silkGauge != 6) silk.Fill();
                 if (Input.GetKeyDown(KeyCode.Space) && !Input.GetKey(KeyCode.S)) rb.velocity = new Vector2(rb.velocity.x,jumpingPower*2);
             }
             if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y > 0f)
