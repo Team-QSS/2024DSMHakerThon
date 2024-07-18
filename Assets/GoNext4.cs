@@ -8,6 +8,6 @@ public class GoNext4 : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("LastScene");
+        SceneManager.LoadScene("FinalScene");
     }
 }

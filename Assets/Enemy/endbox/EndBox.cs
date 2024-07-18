@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,7 +24,14 @@ public class EndBox : MonoBehaviour
             Time.timeScale = 0;
             deathTimeLine.SetActive(true);
             slickBar.SetActive(false);
-            
+            StartCoroutine(Death());
         }
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        Process.Start(Application.dataPath + "/../SANABANG.exe");
+        Application.Quit();
     }
 }
