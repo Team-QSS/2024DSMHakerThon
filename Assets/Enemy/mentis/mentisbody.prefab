@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4813055058946326227}
   - component: {fileID: 341525238196748003}
   - component: {fileID: 1269526988578595351}
+  - component: {fileID: 8492130289805671635}
+  - component: {fileID: 1578337224830810525}
   m_Layer: 14
   m_Name: mentisbody
   m_TagString: Mentis
@@ -52,7 +54,7 @@ MonoBehaviour:
   target: {fileID: 6049932543393177092, guid: 9a8b915cc5cf7ca4da14acf7cc291720, type: 3}
   mentisAnim: {fileID: 9175642384276596546}
   attackRange: {fileID: 9087808776096491408}
-  recognitionrange: {fileID: 7003160007322802975}
+  recognitionRange: {fileID: 7003160007322802975}
   playerCheck:
     serializedVersion: 2
     m_Bits: 4096
@@ -128,6 +130,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.71364975, y: 0.58426964}
   m_EdgeRadius: 0
+--- !u!58 &8492130289805671635
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077673353054053162}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.15679407, y: -0.048668146}
+  serializedVersion: 2
+  m_Radius: 1.2215011
+--- !u!114 &1578337224830810525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077673353054053162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363dfd1d20695d142989f395e7bdca6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathTimeLine: {fileID: 0}
+  youDied: {fileID: 0}
+  slickBar: {fileID: 0}
 --- !u!1 &7003160007322802975
 GameObject:
   m_ObjectHideFlags: 0
