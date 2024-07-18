@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7089866177941096599}
   - component: {fileID: 2814220476699180260}
   - component: {fileID: 4139109323643719350}
+  - component: {fileID: 8024768992342236004}
   m_Layer: 0
   m_Name: FallingSpiderWeb
   m_TagString: enemy
@@ -162,3 +163,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8024768992342236004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509945836123677857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363dfd1d20695d142989f395e7bdca6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathTimeLine: {fileID: 0}
+  youDied: {fileID: 0}
+  slickBar: {fileID: 0}
