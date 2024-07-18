@@ -1,37 +1,41 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class EndBox : MonoBehaviour
+namespace Enemy.endbox
 {
-    [SerializeField] private GameObject deathTimeLine;
-    [SerializeField] private GameObject youDied;
-    [SerializeField] private GameObject slickBar;
-
-    private void Start()
+    public class EndBox : MonoBehaviour
     {
-        deathTimeLine.SetActive(false);
-        youDied.SetActive(false);
-    }
+        [SerializeField] private GameObject deathTimeLine;
+        [SerializeField] private GameObject youDied;
+        [SerializeField] private GameObject slickBar;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        private void Start()
         {
-            Time.timeScale = 0;
-            deathTimeLine.SetActive(true);
-            slickBar.SetActive(false);
-            StartCoroutine(Death());
+            deathTimeLine.SetActive(false);
+            youDied.SetActive(false);
         }
-    }
 
-    private IEnumerator Death()
-    {
-        yield return new WaitForSecondsRealtime(5);
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Time.timeScale = 0;
+                deathTimeLine.SetActive(true);
+                slickBar.SetActive(false);
+                StartCoroutine(Death());
+            }
+        }
+
+        private static IEnumerator Death()
+        {
+            yield return new WaitForSecondsRealtime(5);
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            /*
         Process.Start(Application.dataPath + "/../SANABANG.exe");
         Application.Quit();
+        */
+        }
     }
 }
