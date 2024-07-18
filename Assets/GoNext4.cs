@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GoNext4 : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("FinalScene");
+        SceneManager.LoadScene("LastScene");
     }
 }
