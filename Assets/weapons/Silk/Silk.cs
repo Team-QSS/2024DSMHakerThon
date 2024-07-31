@@ -9,7 +9,7 @@ namespace weapons.Silk
     public class Silk : MonoBehaviour
     {
         public LineRenderer line;
-        public Transform silk;
+        public Rigidbody2D silk;
         
         
 
@@ -41,6 +41,7 @@ namespace weapons.Silk
             line.SetPosition(0,transform.position);
             line.SetPosition(1,silk.position);
             line.useWorldSpace = true;
+            silk.GetComponent<SilkThrow>().joint2D.enabled = false;
         }
 
         // Update is called once per frame
@@ -50,7 +51,7 @@ namespace weapons.Silk
             line.SetPosition(1,silk.position);
             if (Input.GetMouseButtonDown(1) && !isSilkActive && silkGauge>0)
             {
-                silk.position = transform.position;
+                silk.transform.position = transform.position;
                 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
                 mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)) - transform.position;
                 isSilkActive = true;
