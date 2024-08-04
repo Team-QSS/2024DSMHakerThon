@@ -14,7 +14,7 @@ namespace Enemy.mentis
         private bool isWalking;
         private bool isAttacking;
         private bool isIdling;
-
+        private Rigidbody2D rb;
         public LayerMask playerCheck;
         private static readonly int IsIdling = Animator.StringToHash("isidling");
         private static readonly int IsWalking = Animator.StringToHash("iswalking");
@@ -24,6 +24,7 @@ namespace Enemy.mentis
         private void Start()
         {
             playerMove = target.GetComponent<PlayerMove>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         // Update is called once per frame
@@ -44,7 +45,7 @@ namespace Enemy.mentis
                 if (playerMove.isFacingRight)
                     if (Physics2D.OverlapCircle(recognitionRange.transform.position, 8.5f, playerCheck))
                     {
-                        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, newPosX,
+                        rb.position = Vector3.MoveTowards(gameObject.transform.position, newPosX,
                             2 * Time.deltaTime);
                         SetAnimation(IsWalking);
                     }
@@ -59,7 +60,7 @@ namespace Enemy.mentis
                 if (!playerMove.isFacingRight)
                     if (Physics2D.OverlapCircle(recognitionRange.transform.position, 8.5f, playerCheck))
                     {
-                        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, newPosX,
+                        rb.position = Vector3.MoveTowards(gameObject.transform.position, newPosX,
                             2 * Time.deltaTime);
                         SetAnimation(IsWalking);
                     }
