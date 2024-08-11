@@ -15,6 +15,7 @@ namespace TimelinePerStage.title
 
         public void TimeLineStart()
         {
+            AudioManager.PlaySoundInstance("Audio/Sea");
             canVas.SetActive(false);
             timeLine.SetActive(true);
         }
