@@ -1,23 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class NextScene2 : MonoBehaviour
+namespace Enemy.endbox
 {
-    [SerializeField] private GameObject nextSceneTimeLine;
-    [SerializeField] private GameObject slikBank;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public class NextScene2 : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        [SerializeField] private GameObject nextSceneTimeLine;
+        [FormerlySerializedAs("slikBank")] [SerializeField] private GameObject silkBank;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Time.timeScale = 0;
-            nextSceneTimeLine.SetActive(true);
-            slikBank.SetActive(false);
+            if (other.CompareTag("Player"))
+            {
+                Time.timeScale = 0;
+                nextSceneTimeLine.SetActive(true);
+                silkBank.SetActive(false);
+            }
         }
-    }
 
 
     
+    }
 }

@@ -1,13 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-    public class NextScene_Title : MonoBehaviour
+namespace TimelinePerStage.title
+{
+    public class NextSceneTitle : MonoBehaviour
     {
         private void Start()
         {
             SceneManager.LoadScene("Stage1");
         }
     }
+}
 

@@ -1,24 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Stage1TimeLine : MonoBehaviour
+namespace TimelinePerStage.stage1
 {
-    [SerializeField] private CinemachineVirtualCamera ceneMachine;
-    [SerializeField] private GameObject canVas;
-    // Start is called before the first frame update
-    void Start()
+    public class Stage1TimeLine : MonoBehaviour
     {
-        ceneMachine.Priority = 1;
-        canVas.SetActive(false);
+        [FormerlySerializedAs("ceneMachine")] [SerializeField] private CinemachineVirtualCamera cineMachine;
+        [SerializeField] private GameObject canVas;
+
+        private void Start()
+        {
+            cineMachine.Priority = 1;
+            canVas.SetActive(false);
+        }
     }
-
-
-
-    
-        
-    
-    
-    
 }

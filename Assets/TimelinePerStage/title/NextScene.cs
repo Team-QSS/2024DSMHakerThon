@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class NextScene : MonoBehaviour
+namespace TimelinePerStage.title
 {
-    
+    public class NextScene : MonoBehaviour
+    {
+    }
 }

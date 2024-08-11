@@ -1,10 +1,13 @@
 using Enemy.crow.script;
 using UnityEngine;
 
-public class BehaviorManager : MonoBehaviour
+namespace Enemy.crow
 {
-    public void EndOfPattern()
+    public class BehaviorManager : MonoBehaviour
     {
-        TheCrow.behavior = Random.Range(0, 1000);
+        public void EndOfPattern()
+        {
+            TheCrow.behavior = Random.Range(0, 1000);
+        }
     }
 }
