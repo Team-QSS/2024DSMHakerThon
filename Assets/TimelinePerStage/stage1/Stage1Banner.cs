@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage1Banner : MonoBehaviour
-{    [SerializeField] private GameObject canVas;
-    // Start is called before the first frame update
-    void Start()
+namespace TimelinePerStage.stage1
+{
+    public class Stage1Banner : MonoBehaviour
     {
-        canVas.SetActive(true);
+        [SerializeField] private GameObject canVas;
+
+        private void Start()
+        {
+            canVas.SetActive(true);
+        }
     }
-    
 }

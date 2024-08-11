@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GotoScene2 : MonoBehaviour
+namespace TimelinePerStage.stage1
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GotoScene2 : MonoBehaviour
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Stage2_Rework");
-
+        private void Start()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Stage2_Rework");
+        }
     }
-
-    // Update is called once per frame
 }
