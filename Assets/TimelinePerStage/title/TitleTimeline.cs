@@ -1,20 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
-public class TitleTimeline : MonoBehaviour
+namespace TimelinePerStage.title
 {
-    [SerializeField] private GameObject canVas;
-    [SerializeField] private GameObject timeLine;
-    private void Start()
+    public class TitleTimeline : MonoBehaviour
     {
-        timeLine.SetActive(false);
-    }
+        [SerializeField] private GameObject canVas;
+        [SerializeField] private GameObject timeLine;
+        private void Start()
+        {
+            AudioManager.SetAsBackgroundMusicInstance("Audio/Cricket", true);
+            timeLine.SetActive(false);
+        }
 
-    public void TimeLineStart()
-    {
-        canVas.SetActive(false);
-        timeLine.SetActive(true);
+        public void TimeLineStart()
+        {
+            canVas.SetActive(false);
+            timeLine.SetActive(true);
+        }
     }
 }
