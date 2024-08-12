@@ -12,12 +12,12 @@ namespace Enemy.Spider
             {
                 WebSummoner.Objects.Enqueue(gameObject);
                 gameObject.SetActive(false);
-                Destroy(Instantiate(effect, transform.position, Quaternion.Euler(0, 0, 0)),1f);
+                Destroy(Instantiate(effect, transform.position, Quaternion.Euler(0, 0, 0), transform.parent),1f);
             }
             if (!collision.CompareTag("Barrier")) return;
             WebSummoner.Objects.Enqueue(gameObject);
             gameObject.SetActive(false);
-            Destroy(Instantiate(effect, transform.position, Quaternion.Euler(0, 0, 0)),1f);
+            Destroy(Instantiate(effect, transform.position, Quaternion.Euler(0, 0, 0), transform.parent),1f);
         }
     }
 }

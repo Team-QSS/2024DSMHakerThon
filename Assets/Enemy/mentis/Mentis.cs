@@ -5,7 +5,7 @@ namespace Enemy.mentis
 {
     public class Mentis : MonoBehaviour
     {
-        [SerializeField] private GameObject target;
+        private GameObject target;
         private Vector3 newPosX;
         [SerializeField] private Animator mentisAnim;
         private PlayerMove playerMove;
@@ -23,7 +23,8 @@ namespace Enemy.mentis
         // Start is called before the first frame update
         private void Start()
         {
-            playerMove = target.GetComponent<PlayerMove>();
+            playerMove = PlayerMove.Instance;
+            target = playerMove.gameObject;
             rb = GetComponent<Rigidbody2D>();
         }
 

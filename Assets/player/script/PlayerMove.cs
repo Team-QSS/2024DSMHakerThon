@@ -1,11 +1,15 @@
 using System.Collections;
+using Cinemachine;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 using weapons.Silk;
 
 namespace player.script
 {
-    public class PlayerMove : MonoBehaviour
+    [RequireComponent(typeof(PlayerMove))]
+    public class PlayerMove : SingleMono<PlayerMove>
     {
         public float horizontal;
         public float jumpingPower = 16f;
@@ -27,6 +31,7 @@ namespace player.script
         [SerializeField] private TrailRenderer tr;
         [SerializeField] private BoxCollider2D bcd2;
         private Animator playerAnim;
+        private CinemachineVirtualCamera cineVCam;
         private bool jumping;
 
         public float jumpStartTime;
@@ -44,7 +49,8 @@ namespace player.script
         // Start is called before the first frame update
         private void Start()
         {
-            silk = gameObject.GetComponent<Silk>();
+            cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+            silk = GetComponent<Silk>();
             playerAnim = GetComponent<Animator>();
             tr.emitting = false;
             stunned = false;
@@ -52,6 +58,12 @@ namespace player.script
 
         private void Update()
         {
+            if (!cineVCam)
+            {
+                cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+                cineVCam.LookAt = transform;
+                cineVCam.Follow = transform;
+            }
             if (!stunned) horizontal = Input.GetAxisRaw("Horizontal");
             if (Input.GetKeyDown(KeyCode.Escape))
                 if (isPaused)
@@ -121,6 +133,7 @@ namespace player.script
             isDashing = true;
             var originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
+            AudioManager.PlaySoundInstance("Audio/Dash");
             rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
             tr.emitting = true;
             yield return new WaitForSeconds(DashingTime);

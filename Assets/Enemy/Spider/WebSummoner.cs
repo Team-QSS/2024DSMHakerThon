@@ -18,7 +18,7 @@ namespace Enemy.Spider
         {
             while (true)
             {
-                var obj = Objects.Count > 0 ? Objects.Dequeue() : Instantiate(webObject);
+                var obj = Objects.Count > 0 ? Objects.Dequeue() : Instantiate(webObject, transform);
                 obj.SetActive(true);
                 obj.transform.position = new Vector3(Random.Range(-105f, 35f), gameObject.transform.position.y);
                 yield return new WaitForSeconds(summonTime);

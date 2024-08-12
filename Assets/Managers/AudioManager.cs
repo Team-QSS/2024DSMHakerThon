@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utils;
 
@@ -20,33 +21,14 @@ namespace Managers
         private void Update()
         {
             if (eventHandlers.Count == 0 || audioSource.isPlaying) return;
-            for (var i = 0; i < eventHandlers.Count; i++) eventHandlers[i](audioSource);
-        }
-
-        public static void AddEventHandlerInstance(Action<AudioSource> action)
-        {
-            Instance.AddEventHandler(action);
-        }
-
-        public static void ClearEventHandlerInstance()
-        {
-            Instance.ClearEventHandler();
+            foreach (var listener in eventHandlers.ToList()) listener(audioSource);
         }
         
-        public static void SetAsBackgroundMusicInstance(string path, bool loop = false)
-        {
-            Instance.SetAsBackgroundMusic(path, loop);
-        }
-
-        public static void StopAllSoundsInstance()
-        {
-            Instance.StopAllSounds();
-        }
-
-        public static void PlaySoundInstance(string path)
-        {
-            Instance.PlaySound(path);
-        }
+        public static void AddEventHandlerInstance(Action<AudioSource> action) => Instance.AddEventHandler(action);
+        public static void ClearEventHandlerInstance() => Instance.ClearEventHandler();
+        public static void SetAsBackgroundMusicInstance(string path, bool loop = false) => Instance.SetAsBackgroundMusic(path, loop);
+        public static void StopAllSoundsInstance() => Instance.StopAllSounds();
+        public static void PlaySoundInstance(string path) => Instance.PlaySound(path);
 
         private void PlaySound(string path)
         {
@@ -63,28 +45,16 @@ namespace Managers
             audioSource.Play();
         }
 
-        private void AddEventHandler(Action<AudioSource> action)
-        {
-            eventHandlers.Add(action);
-        }
+        private void AddEventHandler(Action<AudioSource> action) => eventHandlers.Add(action);
 
-        private void ClearEventHandler()
-        {
-            eventHandlers.Clear();
-        }
+        private void ClearEventHandler() => eventHandlers.Clear();
 
-        private void StopAllSounds()
-        {
-            audioSource.Stop();
-        }
+        private void StopAllSounds() => audioSource.Stop();
 
         private static AudioClip GetClip(string path)
         {
             if (Clips.TryGetValue(path, out var clip)) return clip;
-            clip = Resources.Load<AudioClip>(path);
-            if (!clip) return null;
-            Clips[path] = clip;
-            return clip;
+            return !(clip = Resources.Load<AudioClip>(path)) ? null : Clips[path] = clip;
         }
     }
 }

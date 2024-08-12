@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using Managers;
 using player.script;
 using UnityEngine;
+using Utils;
 
 namespace weapons.Silk
 {
-    public class SilkThrow : MonoBehaviour
+    [RequireComponent(typeof(SilkThrow))]
+    public class SilkThrow : SingleMono<SilkThrow>
     {
         private Silk silkThrow;
         public SpringJoint2D joint2D;
@@ -18,17 +21,17 @@ namespace weapons.Silk
         private readonly Queue<GameObject> parameterQueue = new();
         private PlayerMove playerMove;
 
-        private void Awake()
+        protected override void Awake()
+        {
+            base.Awake();
+            Instance.particlesQueue.Clear();
+            for (var i = 0; i < particleInstanceCount; i++) Instance.particlesQueue.Enqueue(Instantiate(particle));
+        }
+
+        private void Start()
         {
             playerMove = gameObject.GetComponent<PlayerMove>();
             silkThrow = GameObject.Find("player").GetComponent<Silk>();
-            for (var i = 0; i < particleInstanceCount; i++)
-            {
-                particlesQueue.Enqueue(Instantiate(particle));
-            }
-        }
-        private void Start()
-        {
             gameObject.SetActive(false);
             joint2D = GetComponent<SpringJoint2D>();
             stopPos = Vector2.zero;
@@ -43,6 +46,7 @@ namespace weapons.Silk
             {
                 joint2D.enabled = true;
                 silkThrow.isAttach = true;
+                AudioManager.PlaySoundInstance("Audio/SilkCatch");
                 isBlocked = true;
                 stopPos = gameObject.transform.position;
                 if (particlesQueue.Count == 0)
