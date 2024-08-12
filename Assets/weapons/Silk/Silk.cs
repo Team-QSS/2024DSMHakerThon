@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Linq;
+using Managers;
 using player.script;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,11 +11,9 @@ namespace weapons.Silk
 {
     public class Silk : MonoBehaviour
     {
-        public LineRenderer line;
-        public Rigidbody2D silk;
+        private LineRenderer line;
+        private Rigidbody2D silk;
         
-        
-
         private Vector2 mouseDir;
         public Camera mainCam;
         public bool isSilkActive;
@@ -23,7 +24,7 @@ namespace weapons.Silk
         private float mouseDisY;
         public int silkGauge = 6;
         private bool filling;
-        [SerializeField] private GameObject[] silkGaugeObj;
+        private Image[] silkGaugeObj;
         [SerializeField] private Sprite filled;
         [FormerlySerializedAs("spended")] [SerializeField] private Sprite spent;
         private PlayerMove playerMove;
@@ -31,9 +32,14 @@ namespace weapons.Silk
         
 
         public bool isAttach;
+
         // Start is called before the first frame update
         private void Start()
         {
+            mainCam = Camera.main;
+            silkGaugeObj = FindAnyObjectByType<SilkBank>().GetComponentsInChildren<Image>();
+            silk = SilkThrow.Instance.GetComponent<Rigidbody2D>();
+            line = silk.GetComponentInChildren<LineRenderer>();
             rb = GetComponent<Rigidbody2D>();
             playerMove = gameObject.GetComponent<PlayerMove>();
             line.positionCount = 2;
@@ -44,9 +50,10 @@ namespace weapons.Silk
             silk.GetComponent<SilkThrow>().joint2D.enabled = false;
         }
 
-        // Update is called once per frame
         private void Update()
         {
+            if (!mainCam) mainCam = Camera.main;
+            if (silkGaugeObj.Length > 0 && !silkGaugeObj[0]) silkGaugeObj = FindAnyObjectByType<SilkBank>().GetComponentsInChildren<Image>();
             line.SetPosition(0,transform.position);
             line.SetPosition(1,silk.position);
             if (Input.GetMouseButtonDown(1) && !isSilkActive && silkGauge>0)
@@ -56,8 +63,9 @@ namespace weapons.Silk
                 mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)) - transform.position;
                 isSilkActive = true;
                 isLineMax = false;
+                AudioManager.PlaySoundInstance("Audio/SilkThrow");
                 silk.gameObject.SetActive(true);
-                silkGaugeObj[silkGauge - 1].GetComponent<Image>().sprite = spent;
+                silkGaugeObj[silkGauge - 1].sprite = spent;
                 silkGauge--;
             }
             switch (isSilkActive)
@@ -124,7 +132,7 @@ namespace weapons.Silk
                     break;
                 yield return new WaitForSeconds(0.5f);
                 silkGauge++;
-                silkGaugeObj[silkGauge-1].GetComponent<Image>().sprite = filled;
+                silkGaugeObj[silkGauge-1].sprite = filled;
             }
 
             filling = false;

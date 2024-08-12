@@ -14,19 +14,19 @@ namespace Utils
             get
             {
                 if (_instance) return _instance;
-                if ((_instance = FindObjectOfType<T>()) != null) return _instance;
+                if (_instance = FindObjectOfType<T>()) return _instance;
                 return _instance = new GameObject(nameof(T)).AddComponent<T>();
             }
         }
 
         protected virtual void Awake()
         {
-            if (_instance && !canBeDestroy)
+            if (!canBeDestroy && _instance)
             {
+                _instance.transform.position = transform.position;
                 Destroy(gameObject);
                 return;
             }
-
             _instance = this as T;
             if (!canBeDestroy) DontDestroyOnLoad(gameObject);
         }

@@ -1,5 +1,7 @@
 using Managers;
+using player.script;
 using UnityEngine;
+using weapons.Silk;
 
 namespace TimelinePerStage.title
 {
@@ -11,10 +13,13 @@ namespace TimelinePerStage.title
         {
             AudioManager.SetAsBackgroundMusicInstance("Audio/Cricket", true);
             timeLine.SetActive(false);
+            Destroy(PlayerMove.Instance.gameObject);
+            Destroy(SilkThrow.Instance.gameObject);
         }
 
         public void TimeLineStart()
         {
+            AudioManager.PlaySoundInstance("Audio/Decide");
             AudioManager.PlaySoundInstance("Audio/Sea");
             canVas.SetActive(false);
             timeLine.SetActive(true);

@@ -1,3 +1,5 @@
+using System;
+using player.script;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,11 +8,16 @@ namespace Enemy.crow.script
     public class TheCrow : MonoBehaviour
     {
         private float moveSpeed;
-        [SerializeField] private GameObject target;
+        private GameObject target;
         private Vector3 newPosX;
         [SerializeField] private Animator crowAnim;
         public static float behavior;
         private static readonly int IsBiting = Animator.StringToHash("isbiting");
+
+        private void Start()
+        {
+            target = PlayerMove.Instance.gameObject;
+        }
 
         // Update is called once per frame
         private void Update()
