@@ -11,11 +11,12 @@ namespace Enemy.TheExecutor
         private GameObject player;
         private Vector2 playerPos;
         private bool isFirst; 
-        private float[] moveSet;
+        [SerializeField]private float[] moveSet;
         private float attackRange;
         private Rigidbody2D rb2D;
         private Animator animator;
         private int randomBehavior;
+        private float playerFlipDirection;
         private void FixedUpdate()
         {
             var position = player.transform.position;
@@ -24,24 +25,23 @@ namespace Enemy.TheExecutor
 
         private void Start()
         {
+
             animator = GetComponent<Animator>();
             rb2D = GetComponent<Rigidbody2D>();
             isFirst = true;
             player = GameObject.FindWithTag("Player");
-            moveSet[0] = 4;
-            moveSet[1] = 10;
-            moveSet[2] = 20;
+            Dash();
+            //moveSet[0] = 4;
+            //moveSet[1] = 10;
+            //moveSet[2] = 20;
         }
         private void Update()
         {
-            attackRange = Vector2.Distance(gameObject.transform.position, playerPos);
-            gameObject.transform.localScale = attackRange > 0 ? new Vector3(1.3f,1.3f,1.3f) : new Vector3(-1.3f,1.3f,1.3f);
-            attackRange = Math.Abs(Vector2.Distance(transform.position, playerPos));
-            if (!isFirst) return;
-            isFirst = false;
-            Dash();
-
-
+            var position = gameObject.transform.position;
+            attackRange = Vector2.Distance(position, playerPos);
+            playerFlipDirection = position.x - playerPos.x;
+            Debug.Log(playerFlipDirection);
+            gameObject.transform.localScale = attackRange < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
         }
 
         private void NextPattern(float atkRange)
@@ -91,7 +91,7 @@ namespace Enemy.TheExecutor
             StartCoroutine(AttackFlow());
         }
 
-        private void PatternEnd()
+        public void PatternEnd()
         {
             NextPattern(attackRange);
         }
@@ -107,6 +107,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             yield return new WaitForSeconds(0.3f);
+            Debug.Log(1);
         }
         IEnumerator DashFlow()
         {
@@ -116,7 +117,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("isdash",true);
             yield return new WaitForSeconds(0.9f);
             rb2D.gravityScale = 0f;
-            rb2D.velocity = new Vector2(transform.localScale.x * 2.3f, 0f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -2.3f, 0f);
             yield return new WaitForSeconds(1.2f);
             rb2D.velocity = new Vector2(0f, 0f);
             rb2D.gravityScale = originalGravity;
@@ -124,7 +125,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             yield return new WaitForSeconds(0.2f);
-            
+            Debug.Log(2);
         }
 
         IEnumerator ChaseFlow()
@@ -132,13 +133,14 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",true);
             animator.SetBool("isdash",false);
-            rb2D.velocity = new Vector2(transform.localScale.x * 1f, 0f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -1f, 0f);
             yield return new WaitForSeconds(1f);
             rb2D.velocity = new Vector2(0f, 0f);
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             yield return new WaitForSeconds(0.4f);
+            Debug.Log(3);
         }
     }
 }
