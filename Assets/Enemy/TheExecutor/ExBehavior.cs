@@ -17,11 +17,6 @@ namespace Enemy.TheExecutor
         private Animator animator;
         private int randomBehavior;
         private float playerFlipDirection;
-        private void FixedUpdate()
-        {
-            var position = player.transform.position;
-            playerPos = new Vector2(position.x, position.y);
-        }
 
         private void Start()
         {
@@ -31,17 +26,22 @@ namespace Enemy.TheExecutor
             isFirst = true;
             player = GameObject.FindWithTag("Player");
             Dash();
-            //moveSet[0] = 4;
-            //moveSet[1] = 10;
-            //moveSet[2] = 20;
         }
+
+        private void FixedUpdate()
+        {
+            var position = player.transform.position;
+            playerPos = new Vector2(position.x, position.y);
+        }
+
         private void Update()
         {
+            var playerPosition = player.transform.position;
+            playerPos = new Vector2(playerPosition.x, playerPosition.y);
             var position = gameObject.transform.position;
             attackRange = Vector2.Distance(position, playerPos);
             playerFlipDirection = position.x - playerPos.x;
-            Debug.Log(playerFlipDirection);
-            gameObject.transform.localScale = attackRange < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
+            gameObject.transform.localScale = playerFlipDirection < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
         }
 
         private void NextPattern(float atkRange)
@@ -107,7 +107,6 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             yield return new WaitForSeconds(0.3f);
-            Debug.Log(1);
         }
         IEnumerator DashFlow()
         {
@@ -125,7 +124,6 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             yield return new WaitForSeconds(0.2f);
-            Debug.Log(2);
         }
 
         IEnumerator ChaseFlow()
@@ -140,7 +138,6 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             yield return new WaitForSeconds(0.4f);
-            Debug.Log(3);
         }
     }
 }
