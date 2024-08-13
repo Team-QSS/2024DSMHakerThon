@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,11 +18,11 @@ namespace Enemy.TheExecutor
         private Animator animator;
         private int randomBehavior;
         private float playerFlipDirection;
-        
+        private bool isDashing;
         //private TrailRenderer tr;
         private void Start()
         {
-
+            isDashing = false;
             animator = GetComponent<Animator>();
             rb2D = GetComponent<Rigidbody2D>();
             isFirst = true;
@@ -44,7 +45,11 @@ namespace Enemy.TheExecutor
             var position = gameObject.transform.position;
             attackRange = Vector2.Distance(position, playerPos);
             playerFlipDirection = position.x - playerPos.x;
-            gameObject.transform.localScale = playerFlipDirection < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
+            if (!isDashing)
+            {
+                gameObject.transform.localScale = playerFlipDirection < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
+            }
+
         }
 
         private void NextPattern(float atkRange)
@@ -61,10 +66,10 @@ namespace Enemy.TheExecutor
             }
             else if (atkRange > moveSet[0] && atkRange < moveSet[1])
             {
-                randomBehavior = Random.Range(0, 2);
+                randomBehavior = Random.Range(0, 4);
                 switch (randomBehavior)
                 {
-                    case 0:
+                    default:
                         Chase();
                         break;
                     case 1:
@@ -81,19 +86,12 @@ namespace Enemy.TheExecutor
 
         private void Chase()
         {
-            animator.SetBool("isidle",false);
-            animator.SetBool("ischase",true);
-            animator.SetBool("isdash",false);
             StartCoroutine(ChaseFlow());
-            animator.SetBool("isidle",true);
-            animator.SetBool("ischase",false);
-            animator.SetBool("isdash",false);
-            NextPattern(attackRange);
-
         }
         
         private void Dash()
         {
+            if (isDashing) return;
             StartCoroutine(DashFlow());
         }
 
@@ -121,6 +119,7 @@ namespace Enemy.TheExecutor
         }
         IEnumerator DashFlow()
         {
+            isDashing = true;
             float originalGravity = rb2D.gravityScale;
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
@@ -128,35 +127,29 @@ namespace Enemy.TheExecutor
             yield return new WaitForSeconds(0.9f);
             rb2D.gravityScale = 0f;
             //tr.emitting = true;
-            //rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -1f, 0f);
-            rb2D.AddForce(new Vector2(gameObject.transform.localScale.x * -7f,0),ForceMode2D.Impulse);
-            yield return new WaitForSeconds(1.2f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -13f, 0f);
+            //rb2D.AddForce(new Vector2(gameObject.transform.localScale.x * -7f,0),ForceMode2D.Impulse);
+            yield return new WaitForSeconds(0.4f);
             rb2D.velocity = new Vector2(0f, 0f);
             rb2D.gravityScale = originalGravity;
             //tr.emitting = false;
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            isDashing = false;
         }
 
         IEnumerator ChaseFlow()
         {
-            for (float i = 0; i < 8f; i += Time.deltaTime)
-            {
-                if (attackRange > moveSet[0])
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, playerPos, Time.deltaTime);
-                    yield return null;
-                    Debug.Log(transform.position);
-                }
-                else
-                {
-                    yield break;
-                }
-            }
-
-            yield return new WaitForSeconds(1.5f);
-
+            animator.SetBool("isidle",false);
+            animator.SetBool("ischase",true);
+            animator.SetBool("isdash",false);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -2f, 0f);
+            yield return new WaitForSeconds(0.6f);
+            rb2D.velocity = new Vector2(0f, 0f);
+            animator.SetBool("isidle",true);
+            animator.SetBool("ischase",false);
+            animator.SetBool("isdash",false);
         }
         
 
