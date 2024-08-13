@@ -17,6 +17,7 @@ namespace Enemy.TheExecutor
         private Animator animator;
         private int randomBehavior;
         private float playerFlipDirection;
+        
         //private TrailRenderer tr;
         private void Start()
         {
@@ -80,7 +81,15 @@ namespace Enemy.TheExecutor
 
         private void Chase()
         {
+            animator.SetBool("isidle",false);
+            animator.SetBool("ischase",true);
+            animator.SetBool("isdash",false);
             StartCoroutine(ChaseFlow());
+            animator.SetBool("isidle",true);
+            animator.SetBool("ischase",false);
+            animator.SetBool("isdash",false);
+            NextPattern(attackRange);
+
         }
         
         private void Dash()
@@ -119,7 +128,8 @@ namespace Enemy.TheExecutor
             yield return new WaitForSeconds(0.9f);
             rb2D.gravityScale = 0f;
             //tr.emitting = true;
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -6f, 0f);
+            //rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -1f, 0f);
+            rb2D.AddForce(new Vector2(gameObject.transform.localScale.x * -7f,0),ForceMode2D.Impulse);
             yield return new WaitForSeconds(1.2f);
             rb2D.velocity = new Vector2(0f, 0f);
             rb2D.gravityScale = originalGravity;
@@ -131,15 +141,24 @@ namespace Enemy.TheExecutor
 
         IEnumerator ChaseFlow()
         {
-            animator.SetBool("isidle",false);
-            animator.SetBool("ischase",true);
-            animator.SetBool("isdash",false);
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -1f, 0f);
-            yield return new WaitForSeconds(1f);
-            rb2D.velocity = new Vector2(0f, 0f);
-            animator.SetBool("isidle",true);
-            animator.SetBool("ischase",false);
-            animator.SetBool("isdash",false);
+            for (float i = 0; i < 8f; i += Time.deltaTime)
+            {
+                if (attackRange > moveSet[0])
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, playerPos, Time.deltaTime);
+                    yield return null;
+                    Debug.Log(transform.position);
+                }
+                else
+                {
+                    yield break;
+                }
+            }
+
+            yield return new WaitForSeconds(1.5f);
+
         }
+        
+
     }
 }
