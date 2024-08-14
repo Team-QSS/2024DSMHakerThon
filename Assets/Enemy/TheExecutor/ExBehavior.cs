@@ -19,9 +19,11 @@ namespace Enemy.TheExecutor
         private int randomBehavior;
         private float playerFlipDirection;
         private bool isDashing;
+        private bool isBehaving;
         //private TrailRenderer tr;
         private void Start()
         {
+            isBehaving = false;
             isDashing = false;
             animator = GetComponent<Animator>();
             rb2D = GetComponent<Rigidbody2D>();
@@ -66,7 +68,7 @@ namespace Enemy.TheExecutor
             }
             else if (atkRange > moveSet[0] && atkRange < moveSet[1])
             {
-                randomBehavior = Random.Range(0, 4);
+                randomBehavior = Random.Range(0, 3);
                 switch (randomBehavior)
                 {
                     default:
@@ -81,7 +83,7 @@ namespace Enemy.TheExecutor
             {
                 Chase();
             }
-            
+
         }
 
         private void Chase()
@@ -108,17 +110,20 @@ namespace Enemy.TheExecutor
 
         IEnumerator AttackFlow()
         {
+
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
-            animator.SetTrigger("attack");
+            animator.SetTrigger("isattack");
             yield return new WaitForSeconds(0.7f);
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+
         }
         IEnumerator DashFlow()
         {
+
             isDashing = true;
             float originalGravity = rb2D.gravityScale;
             animator.SetBool("isidle",false);
@@ -127,9 +132,9 @@ namespace Enemy.TheExecutor
             yield return new WaitForSeconds(0.9f);
             rb2D.gravityScale = 0f;
             //tr.emitting = true;
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -13f, 0f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -20f, 0f);
             //rb2D.AddForce(new Vector2(gameObject.transform.localScale.x * -7f,0),ForceMode2D.Impulse);
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.26f);
             rb2D.velocity = new Vector2(0f, 0f);
             rb2D.gravityScale = originalGravity;
             //tr.emitting = false;
@@ -137,14 +142,16 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             isDashing = false;
+
         }
 
         IEnumerator ChaseFlow()
         {
+            
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",true);
             animator.SetBool("isdash",false);
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -2f, 0f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -4f, 0f);
             yield return new WaitForSeconds(0.6f);
             rb2D.velocity = new Vector2(0f, 0f);
             animator.SetBool("isidle",true);
