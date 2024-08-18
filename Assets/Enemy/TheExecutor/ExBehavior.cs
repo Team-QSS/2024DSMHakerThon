@@ -20,6 +20,7 @@ namespace Enemy.TheExecutor
         private float playerFlipDirection;
         private bool isDashing;
         private bool isBehaving;
+        [SerializeField] private BoxCollider2D _collider2D;
         //private TrailRenderer tr;
         private void Start()
         {
@@ -29,6 +30,7 @@ namespace Enemy.TheExecutor
             rb2D = GetComponent<Rigidbody2D>();
             isFirst = true;
             player = GameObject.FindWithTag("Player");
+            _collider2D.enabled = !_collider2D.enabled;
             //tr = GetComponent<TrailRenderer>();
             //tr.emitting = false;
             Dash();
@@ -84,6 +86,16 @@ namespace Enemy.TheExecutor
                 Chase();
             }
 
+        }
+
+        public void ShowHitBox()
+        {
+            _collider2D.enabled =!_collider2D.enabled;
+        }
+
+        public void HideHitBox()
+        {
+            _collider2D.enabled = !_collider2D.enabled;
         }
 
         private void Chase()

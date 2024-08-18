@@ -60,7 +60,7 @@ namespace player.script
         {
             if (!cineVCam)
             {
-                cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+                cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>(FindObjectsInactive.Include);
                 cineVCam.LookAt = transform;
                 cineVCam.Follow = transform;
             }
