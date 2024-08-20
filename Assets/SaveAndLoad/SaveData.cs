@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -5,11 +6,17 @@ using System.Collections.Generic;
     public class SaveData : MonoBehaviour
     {
         public PlayerStatus playerStatus= new();
+
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
-                //playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex;
+                playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex;
                 SaveToJson();
             }
 
