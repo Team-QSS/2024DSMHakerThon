@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 33fdffd188291d742a24727986eea473
+guid: ffba9211bdfcdd440a4e2708b79e49f2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,7 +81,33 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -100,10 +126,10 @@ TextureImporter:
       name: Silk_gauge_0
       rect:
         serializedVersion: 2
-        x: 415
-        y: 511
-        width: 835
-        height: 739
+        x: 64
+        y: 576
+        width: 384
+        height: 384
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f716f7bd1852514a81a52be8fb960cd
-      internalID: 740742524
+      spriteID: b8bc70295eeff584599b1a8555dc531c
+      internalID: -182342306
       vertices: []
       indices: 
       edges: []
@@ -121,10 +147,10 @@ TextureImporter:
       name: Silk_gauge_1
       rect:
         serializedVersion: 2
-        x: 1951
-        y: 511
-        width: 835
-        height: 739
+        x: 64
+        y: 64
+        width: 384
+        height: 384
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e34b6b4d0240bb7428c02ce6c9873b26
-      internalID: 686163392
+      spriteID: 55448f3da727b66449da025930e41676
+      internalID: -962260228
       vertices: []
       indices: 
       edges: []
@@ -149,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Silk_gauge_0: 740742524
-      Silk_gauge_1: 686163392
+      Silk_gauge_0: -182342306
+      Silk_gauge_1: -962260228
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

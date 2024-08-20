@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b88e5b454eadc4bad85f7946723775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBeDestroy: 0
   horizontal: 0
   jumpingPower: 4.7
   speed: 8
@@ -286,6 +287,7 @@ MonoBehaviour:
   isJumping: 0
   nockBack: {x: 0, y: 0, z: 0}
   stunned: 0
+  silk: {fileID: 0}
 --- !u!96 &3958290759993823022
 TrailRenderer:
   serializedVersion: 3
@@ -411,11 +413,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee0a2f0e49d5e14694df33fb51d91e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 0}
-  silk: {fileID: 0}
   mainCam: {fileID: 0}
   isSilkActive: 0
   isLineMax: 0
+  isLineLimit: 0
+  silkGauge: 6
+  filled: {fileID: -182342306, guid: ffba9211bdfcdd440a4e2708b79e49f2, type: 3}
+  spent: {fileID: -962260228, guid: ffba9211bdfcdd440a4e2708b79e49f2, type: 3}
   isAttach: 0
 --- !u!1 &8211640034619753786
 GameObject:
