@@ -1,32 +1,36 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
+
 
     public class SaveData : MonoBehaviour
     {
-        public PlayerStatus playerStatus= new();
+        public static PlayerStatus playerStatus= new();
 
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Update()
+        public static void SaveScene()
         {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex;
-                SaveToJson();
-            }
-
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                LoadFromJson();
-            }
+            playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex;
+            SaveToJson();
         }
 
-        public void SaveToJson()
+        public static void SavePreviousScene()
+        {
+            playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex+1;
+            SaveToJson();
+        }
+
+        public static void LoadScene()
+        {
+            LoadFromJson();
+            SceneManager.LoadScene(playerStatus.stageTag);
+        }
+
+        public static void SaveToJson()
         {
             string playerData = JsonUtility.ToJson(playerStatus);
             string path = Application.persistentDataPath + "/PlayerStatus.json";
@@ -37,7 +41,7 @@ using System.Collections.Generic;
 
         }
 
-        public void LoadFromJson()
+        public static void LoadFromJson()
         {
             string path = Application.persistentDataPath + "/PlayerStatus.json";
             string playerData = System.IO.File.ReadAllText(path);
@@ -50,6 +54,7 @@ using System.Collections.Generic;
     public class PlayerStatus
     {
         public int stageTag;
+        public bool canDash;
     }
 
 
