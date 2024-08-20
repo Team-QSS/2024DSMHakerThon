@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace StageManager
 {
@@ -7,7 +7,7 @@ namespace StageManager
     {
         void Start()
         {
-            
+            SaveData.SaveScene();            
         }
     
         void Update()
