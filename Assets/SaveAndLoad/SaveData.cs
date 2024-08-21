@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,7 +55,8 @@ using UnityEngine.SceneManagement;
     public class PlayerStatus
     {
         public int stageTag;
-        public bool canDash;
+        public Dictionary<string, bool> playerAbility;
+        public Dictionary<string, Vector2> lastLocation;
     }
 
 
