@@ -11,6 +11,7 @@ TagManager:
   - crow
   - Barrier
   - Mentis
+  - bonefire
   layers:
   - Default
   - TransparentFX
