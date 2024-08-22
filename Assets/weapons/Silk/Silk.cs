@@ -72,7 +72,7 @@ namespace weapons.Silk
             {
                 case true when !isLineMax:
                 {
-                    silk.MovePosition(Vector2.MoveTowards(silk.position, mousePos, Time.deltaTime * 50));
+                    silk.position = Vector2.MoveTowards(silk.position, mousePos, Time.deltaTime * 30);
                     if (Vector2.Distance(transform.position, silk.position) > 9f) isLineMax = true;
                     if (silk.position.Equals(mousePos)) isLineMax = true;
 
@@ -83,7 +83,7 @@ namespace weapons.Silk
                 }
                 case true when isLineMax && !isAttach:
                 {
-                    silk.MovePosition(Vector2.MoveTowards(silk.position, transform.position, Time.deltaTime * 50));
+                    silk.position = Vector2.MoveTowards(silk.position, transform.position, Time.deltaTime * 30);
                     if (Vector2.Distance(transform.position, silk.position) < 0.1f)
                     {
                         isSilkActive = false;
