@@ -51,6 +51,8 @@ namespace player.script
         // Start is called before the first frame update
         private void Start()
         {
+            SaveData.LoadFromJson();
+            gameObject.transform.position= SaveData.playerStatus.lastLocation;
             cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
             silk = GetComponent<Silk>();
             playerAnim = GetComponent<Animator>();
