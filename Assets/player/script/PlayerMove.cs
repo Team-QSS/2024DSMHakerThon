@@ -11,6 +11,8 @@ namespace player.script
     [RequireComponent(typeof(PlayerMove))]
     public class PlayerMove : SingleMono<PlayerMove>
     {
+        public static Vector2 playerPos;
+        
         public float horizontal;
         public float jumpingPower = 16f;
         public float speed = 8f;
@@ -58,6 +60,7 @@ namespace player.script
 
         private void Update()
         {
+            playerPos = gameObject.transform.position;
             if (!cineVCam)
             {
                 cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>(FindObjectsInactive.Include);

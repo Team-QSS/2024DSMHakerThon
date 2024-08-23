@@ -1,3 +1,4 @@
+
 using System.Collections;
 using player.script;
 using UnityEngine;
@@ -10,8 +11,14 @@ namespace SavePoint
         private static Animator _ani;
         private static Light2D _light2D;
         private static ParticleSystem _prt;
-        
-        // Start is called before the first frame update
+        private static Vector2 _playerLocation;
+        private static Vector2 _location;
+
+        private void Awake()
+        {
+            SaveData.LoadFromJson();
+        }
+
         private void Start()
         {
             _light2D = GetComponentInChildren<Light2D>();
@@ -19,10 +26,13 @@ namespace SavePoint
             _ani = GetComponent<Animator>();
             _light2D.enabled = false;
             _prt.Stop();
+            _location = gameObject.transform.position;
+            if (SaveData.playerStatus.boneFireLocation == _location)
+            {
+                ActivedBoneFire();
+            }
         }
         
-
-        // Update is called once per frame
         public static IEnumerator BoneFireFlow(float sec)
         {
             PlayerInteraction.isInteracting = true;
@@ -32,8 +42,18 @@ namespace SavePoint
             yield return new WaitForSeconds(1.2f);
             _light2D.enabled = true;
             _ani.SetBool("lit",true);
+            SaveData.playerStatus.lastLocation = PlayerMove.playerPos;
+            SaveData.playerStatus.boneFireLocation = _location;
+            SaveData.SaveToJson();
             PlayerInteraction.isInteracting = false;
 
+        }
+
+        private void ActivedBoneFire()
+        {
+            _prt.Play();
+            _light2D.enabled = true;
+            _ani.SetBool("lit",true);
         }
     }
 }

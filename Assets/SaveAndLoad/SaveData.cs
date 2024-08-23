@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-    public class SaveData : MonoBehaviour
+
+public class SaveData : MonoBehaviour
     {
         public static PlayerStatus playerStatus= new();
 
@@ -24,7 +25,7 @@ using UnityEngine.SceneManagement;
             playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex+1;
             SaveToJson();
         }
-
+        
         public static void LoadScene()
         {
             LoadFromJson();
@@ -47,7 +48,7 @@ using UnityEngine.SceneManagement;
             string path = Application.persistentDataPath + "/PlayerStatus.json";
             string playerData = System.IO.File.ReadAllText(path);
             playerStatus = JsonUtility.FromJson<PlayerStatus>(playerData);
-            Debug.Log(playerStatus.stageTag);
+            Debug.Log(playerStatus.lastLocation);
         }
     }
     
@@ -56,7 +57,8 @@ using UnityEngine.SceneManagement;
     {
         public int stageTag;
         public Dictionary<string, bool> playerAbility;
-        public Dictionary<string, Vector2> lastLocation;
+        public Vector2 lastLocation;
+        public Vector2 boneFireLocation;
     }
 
 
