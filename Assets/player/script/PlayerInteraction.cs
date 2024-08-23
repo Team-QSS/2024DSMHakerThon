@@ -13,15 +13,11 @@ namespace player.script
         private bool triggering;
         private float waitTime;
         private string tagName;
-        private BoneFire boneFire;
-        
-        
         private void Start()
         {
-            //boneFire = FindObject
             isInteracting = false;
             triggering = false;
-            interactAbles.Add("npc",4);
+            interactAbles.Add("npc",4f);
             interactAbles.Add("item",0.8f);
             interactAbles.Add("bonefire",3f);
             interactAbles.Add("ability",4f);
@@ -64,7 +60,7 @@ namespace player.script
                 case "item":
                     break;
                 case "bonefire":
-                    BoneFire.BoneFireFlow(waitTime);
+                    StartCoroutine(BoneFire.BoneFireFlow(waitTime));
                     break;
                 case "ability":
                     break;
