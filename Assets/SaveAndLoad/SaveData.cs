@@ -1,14 +1,13 @@
-
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Vector2 = UnityEngine.Vector2;
 
 
 public class SaveData : MonoBehaviour
     {
         public static PlayerStatus playerStatus= new();
-
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
@@ -22,6 +21,8 @@ public class SaveData : MonoBehaviour
 
         public static void SavePreviousScene()
         {
+            playerStatus.lastLocation = new Vector2(0, 0);
+            playerStatus.boneFireLocation = new Vector2(0, 0);
             playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex+1;
             SaveToJson();
         }
@@ -29,9 +30,25 @@ public class SaveData : MonoBehaviour
         public static void LoadScene()
         {
             LoadFromJson();
+            if (playerStatus.stageTag == 0) return;
             SceneManager.LoadScene(playerStatus.stageTag);
         }
 
+        public static void LocatePosition()
+        {
+            LoadFromJson();
+            if (playerStatus.lastLocation == new Vector2(0,0))
+            {
+                switch (playerStatus.stageTag)
+                {
+                    case 2:
+                        playerStatus.lastLocation = new Vector2(-21.94f,-0.54f);
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+        }
         public static void SaveToJson()
         {
             string playerData = JsonUtility.ToJson(playerStatus);
@@ -49,6 +66,13 @@ public class SaveData : MonoBehaviour
             string playerData = System.IO.File.ReadAllText(path);
             playerStatus = JsonUtility.FromJson<PlayerStatus>(playerData);
             Debug.Log(playerStatus.lastLocation);
+        }
+
+        public static void DeleteInJson()
+        {
+            string path = Application.persistentDataPath + "/PlayerStatus.json";
+            System.IO.File.Delete(path);
+            Debug.Log("file deleted");
         }
     }
     
