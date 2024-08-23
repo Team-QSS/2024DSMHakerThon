@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using SavePoint;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.IO;
 namespace player.script
 {
     public class PlayerInteraction : MonoBehaviour
@@ -14,18 +11,16 @@ namespace player.script
         public static bool isInteracting;
         private Collider2D otherCollider2d;
         private bool triggering;
-        private float tempSpeed;
-        private float tempJump;
         private float waitTime;
         private string tagName;
-        // Start is called before the first frame update
+        private BoneFire boneFire;
+        
+        
         private void Start()
         {
-            player = transform.parent.GetComponent<PlayerMove>();
+            //boneFire = FindObject
             isInteracting = false;
             triggering = false;
-            tempSpeed = player.speed;
-            tempJump = player.jumpingPower;
             interactAbles.Add("npc",4);
             interactAbles.Add("item",0.8f);
             interactAbles.Add("bonefire",3f);
@@ -35,7 +30,16 @@ namespace player.script
         // Update is called once per frame
         private void Update()
         {
-            if (triggering&&Input.GetKeyDown(KeyCode.F)&&!isInteracting) OnInteractionJudge();
+            if (triggering)
+            {
+                if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
+                {
+                    Debug.Log("?");
+                    OnInteractionJudge();
+                }
+                Debug.Log("!");
+                
+            }
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -60,7 +64,7 @@ namespace player.script
                 case "item":
                     break;
                 case "bonefire":
-                    StartCoroutine(BoneFireFlow(waitTime));
+                    BoneFire.BoneFireFlow(waitTime);
                     break;
                 case "ability":
                     break;
@@ -70,13 +74,6 @@ namespace player.script
                     
             }
         }
-        private static IEnumerator BoneFireFlow(float sec)
-        {
-            isInteracting = true;
-            
-            yield return new WaitForSeconds(sec);
 
-
-        }
     }
 }

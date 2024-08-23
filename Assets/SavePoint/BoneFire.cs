@@ -1,23 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BoneFire : MonoBehaviour
+namespace SavePoint
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BoneFire : MonoBehaviour
     {
+        private static Animator ani;
+        // Start is called before the first frame update
+        void Start()
+        {
+            ani = GetComponent<Animator>();
+        }
         
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public static IEnumerator BoneFireFlow(float sec)
-    {
-        yield return new WaitForSeconds(sec);
+        // Update is called once per frame
+        public static IEnumerator BoneFireFlow(float sec)
+        {
+            Debug.Log("lit");
+            ani.SetBool("lit",true);
+            yield return new WaitForSeconds(sec);
+        }
     }
 }
