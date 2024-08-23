@@ -48,6 +48,7 @@ namespace player.script
 
         public Silk silk;
 
+        private SpriteRenderer _interactionKey;
         // Start is called before the first frame update
         private void Start()
         {
@@ -55,6 +56,7 @@ namespace player.script
             gameObject.transform.position= SaveData.playerStatus.lastLocation;
             SaveData.LoadFromJson();
             cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+            _interactionKey = transform.GetChild(6).gameObject.GetComponent<SpriteRenderer>();
             silk = GetComponent<Silk>();
             playerAnim = GetComponent<Animator>();
             tr.emitting = false;
@@ -129,7 +131,16 @@ namespace player.script
             var currentScale = gameObject.transform.localScale;
             currentScale.x *= -1;
             gameObject.transform.localScale = currentScale;
+            if (currentScale.x > 0)
+            {
+                _interactionKey.flipX = false;
+            }
+            else if (currentScale.x < 0)
+            {
+                _interactionKey.flipX = true;
+            }
             isFacingRight = !isFacingRight;
+
         }
 
         private IEnumerator Dash()

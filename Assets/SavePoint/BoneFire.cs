@@ -36,7 +36,6 @@ namespace SavePoint
         public static IEnumerator BoneFireFlow(float sec)
         {
             PlayerInteraction.isInteracting = true;
-            Debug.Log("lit");
             yield return new WaitForSeconds(1f);
             _prt.Play();
             yield return new WaitForSeconds(1.2f);

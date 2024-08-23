@@ -13,14 +13,17 @@ namespace player.script
         private bool triggering;
         private float waitTime;
         private string tagName;
+        private GameObject interactionKey;
         private void Start()
         {
+            interactionKey = GameObject.Find("InteractionKey");
             isInteracting = false;
             triggering = false;
             interactAbles.Add("npc",4f);
             interactAbles.Add("item",0.8f);
             interactAbles.Add("bonefire",3f);
             interactAbles.Add("ability",4f);
+            interactionKey.SetActive(false);
         }
 
         // Update is called once per frame
@@ -30,17 +33,17 @@ namespace player.script
             {
                 if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
                 {
-                    Debug.Log("?");
                     OnInteractionJudge();
                 }
-                Debug.Log("!");
-                
             }
+
+
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!interactAbles.ContainsKey(other.tag)) return;
+            interactionKey.SetActive(true);
             tagName = other.tag;
             waitTime = interactAbles[tagName];
             triggering = true;
@@ -48,11 +51,13 @@ namespace player.script
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            interactionKey.SetActive(false);
             triggering = false;
         }
 
         private void OnInteractionJudge()
         {
+            interactionKey.SetActive(false);
             switch (tagName)
             {
                 case "npc":
