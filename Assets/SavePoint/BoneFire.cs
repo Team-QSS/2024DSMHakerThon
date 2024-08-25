@@ -36,14 +36,14 @@ namespace SavePoint
         public static IEnumerator BoneFireFlow(float sec)
         {
             PlayerInteraction.isInteracting = true;
+            SaveData.playerStatus.lastLocation = PlayerMove.playerPos;
+            SaveData.playerStatus.boneFireLocation = _location;
+            SaveData.SaveToJson();
             yield return new WaitForSeconds(1f);
             _prt.Play();
             yield return new WaitForSeconds(1.2f);
             _light2D.enabled = true;
             _ani.SetBool("lit",true);
-            SaveData.playerStatus.lastLocation = PlayerMove.playerPos;
-            SaveData.playerStatus.boneFireLocation = _location;
-            SaveData.SaveToJson();
             PlayerInteraction.isInteracting = false;
 
         }

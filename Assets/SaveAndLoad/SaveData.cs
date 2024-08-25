@@ -45,6 +45,9 @@ public class SaveData : MonoBehaviour
                         playerStatus.lastLocation = new Vector2(-21.94f,-0.54f);
                         break;
                     case 3:
+                        playerStatus.lastLocation = new Vector2(13.56f,-0.6f);
+                        break;
+                    case 4:
                         break;
                 }
             }
