@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Interact;
 using SavePoint;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace player.script
 {
@@ -16,6 +18,7 @@ namespace player.script
         private GameObject interactionKey;
         private void Start()
         {
+            player = transform.parent.GetComponent<PlayerMove>();
             interactionKey = GameObject.Find("InteractionKey");
             isInteracting = false;
             triggering = false;
@@ -37,22 +40,31 @@ namespace player.script
                 }
             }
 
-
+            var position = transform.position;
+            var rayCast = Physics2D.Raycast(new Vector2(position.x, position.y),player.isFacingRight ? Vector3.right : Vector3.left, 2, interacts);
+            if (rayCast.collider&& interactAbles.ContainsKey(rayCast.collider.tag))
+            {
+                interactionKey.SetActive(true);
+                tagName = rayCast.collider.tag;
+                waitTime = interactAbles[tagName];
+                triggering = true;
+            }
+            else
+            {
+                interactionKey.SetActive(false);
+                triggering = false;
+            }
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!interactAbles.ContainsKey(other.tag)) return;
-            interactionKey.SetActive(true);
-            tagName = other.tag;
-            waitTime = interactAbles[tagName];
-            triggering = true;
+
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            interactionKey.SetActive(false);
-            triggering = false;
+
         }
 
         private void OnInteractionJudge()
