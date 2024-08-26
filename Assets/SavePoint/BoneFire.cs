@@ -1,6 +1,5 @@
 
 using System.Collections;
-using System.ComponentModel;
 using player.script;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -10,11 +9,11 @@ namespace SavePoint
 {
     public class BoneFire : MonoBehaviour
     {
-        private static Animator _ani;
-        private static Light2D _light2D;
-        private static ParticleSystem _prt;
-        private static Vector2 _playerLocation;
-        private static Vector2 _location;
+        private Animator _ani;
+        private Light2D _light2D;
+        private ParticleSystem _prt;
+        private Vector2 _playerLocation;
+        private Vector2 location;
 
         private void Awake()
         {
@@ -28,19 +27,19 @@ namespace SavePoint
             _ani = GetComponent<Animator>();
             _light2D.enabled = false;
             _prt.Stop();
-            _location = gameObject.transform.position;
-            if (SaveData.playerStatus.boneFireLocation == _location)
+            location = gameObject.transform.position;
+            if (SaveData.playerStatus.boneFireLocation == location)
             {
                 ActivedBoneFire();
             }
         }
         
-        public static IEnumerator BoneFireFlow(float sec)
+        public IEnumerator BoneFireFlow()
         {
             PlayerInteraction.isInteracting = true;
             SaveData.SaveScene();
             SaveData.playerStatus.lastLocation = PlayerMove.playerPos;
-            SaveData.playerStatus.boneFireLocation = _location;
+            SaveData.playerStatus.boneFireLocation = location;
             SaveData.SaveToJson();
             yield return new WaitForSeconds(1f);
             _prt.Play();

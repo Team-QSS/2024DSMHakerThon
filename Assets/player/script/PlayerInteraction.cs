@@ -16,6 +16,8 @@ namespace player.script
         private float waitTime;
         private string tagName;
         private GameObject interactionKey;
+        private GameObject interactedObject;
+        private BoneFire interactedObjectBoneFire;
         private void Start()
         {
             player = transform.parent.GetComponent<PlayerMove>();
@@ -46,6 +48,7 @@ namespace player.script
             {
                 interactionKey.SetActive(true);
                 tagName = rayCast.collider.tag;
+                interactedObject = rayCast.collider.gameObject;
                 waitTime = interactAbles[tagName];
                 triggering = true;
             }
@@ -66,7 +69,8 @@ namespace player.script
                 case "item":
                     break;
                 case "bonefire":
-                    StartCoroutine(BoneFire.BoneFireFlow(waitTime));
+                    interactedObjectBoneFire = interactedObject.GetComponent<BoneFire>();
+                    StartCoroutine(interactedObjectBoneFire.BoneFireFlow());
                     break;
                 case "ability":
                     break;
