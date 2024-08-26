@@ -55,17 +55,6 @@ namespace player.script
                 triggering = false;
             }
         }
-        
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (!interactAbles.ContainsKey(other.tag)) return;
-
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-
-        }
 
         private void OnInteractionJudge()
         {

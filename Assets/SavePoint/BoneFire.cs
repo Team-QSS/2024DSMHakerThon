@@ -1,8 +1,10 @@
 
 using System.Collections;
+using System.ComponentModel;
 using player.script;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace SavePoint
 {
@@ -36,6 +38,7 @@ namespace SavePoint
         public static IEnumerator BoneFireFlow(float sec)
         {
             PlayerInteraction.isInteracting = true;
+            SaveData.SaveScene();
             SaveData.playerStatus.lastLocation = PlayerMove.playerPos;
             SaveData.playerStatus.boneFireLocation = _location;
             SaveData.SaveToJson();

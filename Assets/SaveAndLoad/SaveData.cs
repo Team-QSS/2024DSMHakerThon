@@ -45,12 +45,10 @@ public class SaveData : MonoBehaviour
                         playerStatus.lastLocation = new Vector2(-21.94f,-0.54f);
                         break;
                     case 3:
-                        playerStatus.lastLocation = new Vector2(13.56f,-0.6f);
-                        break;
-                    case 4:
                         break;
                 }
             }
+            
         }
         public static void SaveToJson()
         {
@@ -87,5 +85,6 @@ public class SaveData : MonoBehaviour
         public Vector2 lastLocation;
         public Vector2 boneFireLocation;
     }
+
 
 
