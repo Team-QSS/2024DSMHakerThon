@@ -11,6 +11,8 @@ namespace player.script
     [RequireComponent(typeof(PlayerMove))]
     public class PlayerMove : SingleMono<PlayerMove>
     {
+        public static Vector2 playerPos;
+        
         public float horizontal;
         public float jumpingPower = 16f;
         public float speed = 8f;
@@ -46,10 +48,15 @@ namespace player.script
 
         public Silk silk;
 
+        private SpriteRenderer _interactionKey;
         // Start is called before the first frame update
         private void Start()
         {
+            SaveData.LocatePosition();
+            gameObject.transform.position= SaveData.playerStatus.lastLocation;
+            SaveData.LoadFromJson();
             cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+            _interactionKey = transform.GetChild(6).gameObject.GetComponent<SpriteRenderer>();
             silk = GetComponent<Silk>();
             playerAnim = GetComponent<Animator>();
             tr.emitting = false;
@@ -58,9 +65,10 @@ namespace player.script
 
         private void Update()
         {
+            playerPos = gameObject.transform.position;
             if (!cineVCam)
             {
-                cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+                cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>(FindObjectsInactive.Include);
                 cineVCam.LookAt = transform;
                 cineVCam.Follow = transform;
             }
@@ -123,7 +131,16 @@ namespace player.script
             var currentScale = gameObject.transform.localScale;
             currentScale.x *= -1;
             gameObject.transform.localScale = currentScale;
+            if (currentScale.x > 0)
+            {
+                _interactionKey.flipX = false;
+            }
+            else if (currentScale.x < 0)
+            {
+                _interactionKey.flipX = true;
+            }
             isFacingRight = !isFacingRight;
+
         }
 
         private IEnumerator Dash()

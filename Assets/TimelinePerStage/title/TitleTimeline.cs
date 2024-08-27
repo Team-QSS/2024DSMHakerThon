@@ -23,6 +23,7 @@ namespace TimelinePerStage.title
             AudioManager.PlaySoundInstance("Audio/Sea");
             canVas.SetActive(false);
             timeLine.SetActive(true);
+            SaveData.SavePreviousScene();
         }
     }
 }

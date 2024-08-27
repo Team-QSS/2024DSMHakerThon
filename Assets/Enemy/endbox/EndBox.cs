@@ -20,10 +20,13 @@ namespace Enemy.endbox
         {
             if (other.CompareTag("Player"))
             {
+                /*
                 Time.timeScale = 0;
                 deathTimeLine.SetActive(true);
                 slickBar.SetActive(false);
                 StartCoroutine(Death());
+                */
+                SceneManager.LoadScene("YouDied");
             }
         }
 

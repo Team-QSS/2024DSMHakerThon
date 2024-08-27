@@ -72,13 +72,12 @@ namespace weapons.Silk
             {
                 case true when !isLineMax:
                 {
-                    silk.position = Vector2.MoveTowards(silk.position, mousePos,
-                        Time.deltaTime * 30);
+                    silk.position = Vector2.MoveTowards(silk.position, mousePos, Time.deltaTime * 30);
                     if (Vector2.Distance(transform.position, silk.position) > 9f) isLineMax = true;
                     if (silk.position.Equals(mousePos)) isLineMax = true;
 
-                    if (silk.GetComponent<SilkThrow>().isBlocked) mousePos = silk.GetComponent<SilkThrow>().stopPos;
-                    if (silk.GetComponent<SilkThrow>().isGraped) mousePos = silk.GetComponent<SilkThrow>().executePos;
+                    if (SilkThrow.Instance.isBlocked) mousePos = SilkThrow.Instance.stopPos;
+                    if (SilkThrow.Instance.isGraped) mousePos = SilkThrow.Instance.executePos;
 
                     break;
                 }
@@ -104,11 +103,11 @@ namespace weapons.Silk
                             isAttach = false;
                             isSilkActive = false;
                             isLineMax = false;
-                            silk.GetComponent<SilkThrow>().joint2D.enabled = false;
+                            SilkThrow.Instance.joint2D.enabled = false;
                             silk.gameObject.SetActive(false);
                         }
                     }
-                    else if (silk.GetComponent<SilkThrow>().isGraped) StartCoroutine(Execution());
+                    else if (SilkThrow.Instance.isGraped) StartCoroutine(Execution());
                     break;
                 }
             }

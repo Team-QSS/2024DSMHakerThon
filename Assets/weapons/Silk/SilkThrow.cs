@@ -39,10 +39,10 @@ namespace weapons.Silk
             isBlocked = false;
             isGraped = false;
         }
-
-        private void OnTriggerEnter2D(Collider2D collision)
+        
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (collision.CompareTag("wall"))
+            if (col.CompareTag("wall"))
             {
                 joint2D.enabled = true;
                 silkThrow.isAttach = true;
@@ -67,7 +67,7 @@ namespace weapons.Silk
                     Invoke(nameof(ParticleDisable), 3f);
                 }
             }
-            else if (collision.CompareTag("enemy"))
+            else if (col.CompareTag("enemy"))
             {
                 joint2D.enabled = true;
                 isGraped = true;
@@ -81,9 +81,10 @@ namespace weapons.Silk
             particleInstance.SetActive(false);
             particlesQueue.Enqueue(particleInstance);
         }
-        private void OnTriggerExit2D(Collider2D collision)
+        
+        private void OnTriggerExit2D(Collider2D col)
         {
-            if (!collision.CompareTag("wall")) return;
+            if (!col.CompareTag("wall")) return;
             isBlocked = false;
             stopPos = Vector2.zero;
             isGraped = false;
