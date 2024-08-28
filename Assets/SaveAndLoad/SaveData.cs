@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using player.script;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
@@ -25,6 +26,25 @@ public class SaveData : MonoBehaviour
             playerStatus.boneFireLocation = new Vector2(0, 0);
             playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex+1;
             SaveToJson();
+        }
+
+        public static void SetAbilities(string abilityname)
+        {
+            playerStatus.playerAbility.Add(abilityname);
+            SaveToJson();
+        }
+
+        public static void GetAbilities()
+        {
+            LoadFromJson();
+            if (playerStatus.playerAbility.Contains("parry"))
+            {
+                Parry.unlockParry = true;
+            }
+            else if (playerStatus.playerAbility.Contains("dash"))
+            {
+                PlayerMove.unlockDash = true;
+            }
         }
         
         public static void LoadScene()
@@ -81,7 +101,7 @@ public class SaveData : MonoBehaviour
     public class PlayerStatus
     {
         public int stageTag;
-        public Dictionary<string, bool> playerAbility;
+        public HashSet<string> playerAbility;
         public Vector2 lastLocation;
         public Vector2 boneFireLocation;
     }

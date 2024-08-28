@@ -189,9 +189,9 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 4
     textureScale: {x: 1, y: 1}
-    shadowBias: 0.001
+    shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0
   m_MaskInteraction: 0
@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f004b213e9d9eca45b46d34eaa783d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockParry: 1
 --- !u!1 &6332191213252472608
 GameObject:
   m_ObjectHideFlags: 0

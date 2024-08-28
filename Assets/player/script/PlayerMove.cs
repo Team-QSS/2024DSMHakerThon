@@ -18,7 +18,7 @@ namespace player.script
         public float speed = 8f;
         public bool isFacingRight = true;
     
-        public bool unlockDash;
+        public static bool unlockDash;
         private bool canDash = true;
         private bool isDashing;
         public float dashingPower = 24f;
@@ -61,6 +61,8 @@ namespace player.script
             playerAnim = GetComponent<Animator>();
             tr.emitting = false;
             stunned = false;
+            unlockDash = false;
+            SaveData.GetAbilities();
         }
 
         private void Update()
