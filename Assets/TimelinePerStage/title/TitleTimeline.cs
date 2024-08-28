@@ -1,5 +1,6 @@
 using Managers;
 using player.script;
+using SaveAndLoad;
 using UnityEngine;
 using weapons.Silk;
 
@@ -24,6 +25,11 @@ namespace TimelinePerStage.title
             canVas.SetActive(false);
             timeLine.SetActive(true);
             SaveData.SavePreviousScene();
+        }
+
+        public void Load()
+        {
+            SaveData.LoadScene();
         }
     }
 }
