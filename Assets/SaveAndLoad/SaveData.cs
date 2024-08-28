@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using player.script;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
@@ -31,6 +32,7 @@ public class SaveData : MonoBehaviour
         public static void SetAbilities(string abilityname)
         {
             playerStatus.playerAbility.Add(abilityname);
+            Debug.Log(playerStatus.playerAbility);
             SaveToJson();
         }
 
@@ -41,7 +43,7 @@ public class SaveData : MonoBehaviour
             {
                 Parry.unlockParry = true;
             }
-            else if (playerStatus.playerAbility.Contains("dash"))
+            if (playerStatus.playerAbility.Contains("dash"))
             {
                 PlayerMove.unlockDash = true;
             }
