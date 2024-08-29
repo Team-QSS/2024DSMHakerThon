@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using player.script;
+using SaveAndLoad;
 using UnityEngine;
 
 public class ParryItem : MonoBehaviour
@@ -20,5 +22,6 @@ public class ParryItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         SaveData.SetAbilities("parry");
+        Parry.unlockParry = true;
     }
 }

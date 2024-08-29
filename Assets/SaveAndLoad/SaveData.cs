@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,9 +26,11 @@ namespace SaveAndLoad
             SaveToJson();
         }
 
-        public static void SetAbilities(string abilityname)
+        public static void SetAbilities(string ability)
         {
-            playerStatus.playerAbility.Add(abilityname);
+            LoadFromJson();
+            if (playerStatus.playerAbility.Contains(ability)) return;
+            playerStatus.playerAbility.Add(ability);
             Debug.Log(playerStatus.playerAbility);
             SaveToJson();
         }
@@ -35,13 +38,14 @@ namespace SaveAndLoad
         public static void GetAbilities()
         {
             LoadFromJson();
+            if (playerStatus.playerAbility is null) return;
             if (playerStatus.playerAbility.Contains("parry"))
             {
-                Parry.unlockParry = true;
+                player.script.Parry.unlockParry = true;
             }
             if (playerStatus.playerAbility.Contains("dash"))
             {
-                PlayerMove.unlockDash = true;
+                player.script.PlayerMove.unlockDash = true;
             }
         }
         
@@ -71,6 +75,7 @@ namespace SaveAndLoad
         public static void LoadFromJson()
         {
             if (File.Exists(SavePath)) playerStatus = JsonUtility.FromJson<PlayerStatus>(File.ReadAllText(SavePath));
+            Debug.Log(SavePath);
         }
 
         public static void DeleteInJson() => File.Delete(SavePath);
@@ -80,8 +85,8 @@ namespace SaveAndLoad
     public class PlayerStatus
     {
         public int stageTag;
-        public HashSet<string> PlayerAbility;
         public Vector2 lastLocation;
         public Vector2 boneFireLocation;
+        public List<string> playerAbility;
     }
 }
