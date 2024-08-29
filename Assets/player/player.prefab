@@ -128,7 +128,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Time: 0.2
-  m_PreviewTimeScale: 1
+  m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -517,7 +517,6 @@ MonoBehaviour:
   jumpingPower: 4.7
   speed: 8
   isFacingRight: 1
-  unlockDash: 0
   dashingPower: 40
   dashingCooldown: 0.8
   rb: {fileID: 2774089156257800872}
@@ -682,7 +681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f004b213e9d9eca45b46d34eaa783d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockParry: 1
 --- !u!1 &6332191213252472608
 GameObject:
   m_ObjectHideFlags: 0

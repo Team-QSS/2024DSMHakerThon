@@ -28,7 +28,7 @@ public class ParryItem : MonoBehaviour
         SaveData.SetAbilities("parry");
         particleSys.Stop();
         consume = true;
-        PlayerMove.canmove = false;
         Parry.unlockParry = true;
+        PlayerMove.canmove = false;
     }
 }
