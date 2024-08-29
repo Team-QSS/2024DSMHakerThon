@@ -13,7 +13,7 @@ namespace player.script
     public class PlayerMove : SingleMono<PlayerMove>
     {
         public static Vector2 playerPos;
-        
+        public static bool canmove;
         public float horizontal;
         public float jumpingPower = 16f;
         public float speed = 8f;
@@ -64,11 +64,26 @@ namespace player.script
             stunned = false;
             unlockDash = false;
             SaveData.GetAbilities();
+            canmove = true;
         }
 
         private void Update()
         {
             playerPos = gameObject.transform.position;
+            if (!canmove)
+            {
+                speed = 0;
+                jumpingPower = 0;
+                dashingPower = 0;
+            }
+            else
+            {
+                speed = 8f;
+                jumpingPower = 4.7f;
+                dashingPower = 32f;
+            }
+
+            
             if (!cineVCam)
             {
                 cineVCam = FindAnyObjectByType<CinemachineVirtualCamera>(FindObjectsInactive.Include);
@@ -106,9 +121,9 @@ namespace player.script
             else playerAnim.SetBool(IsJumping,false);
 
             if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash) StartCoroutine(Dash());
-
-            if (horizontal > 0 && !isFacingRight) Flip();
-            if (horizontal < 0 && isFacingRight) Flip();
+            
+            if (horizontal > 0 && !isFacingRight&&canmove) Flip();
+            if (horizontal < 0 && isFacingRight&&canmove) Flip();
         }
 
         // Update is called once per frame
@@ -117,16 +132,17 @@ namespace player.script
             if (isDashing||stunned) return;
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
             playerAnim.SetFloat(XVelocity, Mathf.Abs(rb.velocity.x));
+
         }
 
         public bool IsGrounded()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer) is not null;
+            return Physics2D.OverlapCircle(groundCheck.position, 0.24f, groundLayer) is not null;
         }
 
         public bool IsOnPlatform()
         {
-            return Physics2D.OverlapCircle(platformCheck.position, 0.2f, platformLayer) is not null;
+            return Physics2D.OverlapCircle(platformCheck.position, 0.24f, platformLayer) is not null;
         }
 
         private void Flip()

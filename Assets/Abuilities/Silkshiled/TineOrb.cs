@@ -1,3 +1,4 @@
+using player.script;
 using UnityEngine;
 
 public class TineOrbItem : MonoBehaviour
@@ -9,6 +10,13 @@ public class TineOrbItem : MonoBehaviour
     private void Update()
     {
         //gameObject.transform.rotation = new Quaternion(20f, 0f, 0f,0f);
-        transform.eulerAngles += new Vector3(0f,0f,rotationForce*Time.deltaTime);
+        if (!ParryItem.consume)
+        {
+            transform.eulerAngles += new Vector3(0f,0f,rotationForce*Time.deltaTime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace weapons.Silk
             if (silkGaugeObj.Length > 0 && !silkGaugeObj[0]) silkGaugeObj = FindAnyObjectByType<SilkBank>().GetComponentsInChildren<Image>();
             line.SetPosition(0,transform.position);
             line.SetPosition(1,silk.position);
-            if (Input.GetMouseButtonDown(1) && !isSilkActive && silkGauge>0)
+            if (Input.GetMouseButtonDown(1) && !isSilkActive && silkGauge>0 && PlayerMove.canmove)
             {
                 silk.transform.position = transform.position;
                 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
