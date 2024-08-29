@@ -8395,9 +8395,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SaveData, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 985564001}
+        m_TargetAssemblyTypeName: TimelinePerStage.title.TitleTimeline, Assembly-CSharp
+        m_MethodName: Load
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
