@@ -1,4 +1,5 @@
 using System.Collections;
+using player.script;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +19,7 @@ namespace Enemy.endbox
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player")&&!Parry.isParrying)
             {
                 /*
                 Time.timeScale = 0;

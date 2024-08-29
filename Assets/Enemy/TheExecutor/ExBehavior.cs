@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Enemy.TheExecutor
 {
-    public class ExBehavior : MonoBehaviour
+    public class ExBehavior : EnemyBehavior
     {
         private GameObject player;
         private Vector2 playerPos;
@@ -106,11 +106,13 @@ namespace Enemy.TheExecutor
         private void Dash()
         {
             if (isDashing) return;
+            isAttacking = true;
             StartCoroutine(DashFlow());
         }
 
         private void Attack()
         {
+            isAttacking = true;
             StartCoroutine(AttackFlow());
         }
 
@@ -131,6 +133,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            isAttacking = false;
 
         }
         IEnumerator DashFlow()
@@ -154,6 +157,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             isDashing = false;
+            isAttacking = false;
 
         }
 
