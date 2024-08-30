@@ -12,6 +12,7 @@ public class EnemyBehavior : MonoBehaviour
     public bool isAttacking;
     public bool isStun;
     public float stunTime;
+    protected Animator stunAni;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +34,8 @@ public class EnemyBehavior : MonoBehaviour
         if (other.CompareTag("Player")&&isAttacking&&Parry.isParrying)
         {
             isStun = true;
+            stunAni.SetTrigger("isstun");
             Debug.Log(3);
-            Time.timeScale = 0;
         }
         else if (other.CompareTag("Player"))
         {

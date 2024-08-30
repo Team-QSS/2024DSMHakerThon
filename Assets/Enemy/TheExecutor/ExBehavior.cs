@@ -34,6 +34,7 @@ namespace Enemy.TheExecutor
             //tr = GetComponent<TrailRenderer>();
             //tr.emitting = false;
             Dash();
+            stunAni = animator;
         }
 
         private void FixedUpdate()
@@ -58,6 +59,7 @@ namespace Enemy.TheExecutor
 
         private void NextPattern(float atkRange)
         {
+            if (isStun) return;
             if (atkRange < moveSet[0])
             {
                 Attack();
@@ -85,6 +87,7 @@ namespace Enemy.TheExecutor
             {
                 Chase();
             }
+
 
         }
 
@@ -119,6 +122,7 @@ namespace Enemy.TheExecutor
         
         public void PatternEnd()
         {
+            isStun = false;
             NextPattern(attackRange);
         }
 
