@@ -32,7 +32,6 @@ public class EnemyBehavior : MonoBehaviour
         {
             isStun = true;
             stunAni.SetTrigger("isstun");
-            Debug.Log(3);
         }
         else if (other.CompareTag("Player"))
         {
