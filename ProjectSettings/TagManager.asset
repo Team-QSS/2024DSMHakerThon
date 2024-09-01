@@ -12,6 +12,8 @@ TagManager:
   - Barrier
   - Mentis
   - bonefire
+  - bossName
+  - bossHp
   layers:
   - Default
   - TransparentFX

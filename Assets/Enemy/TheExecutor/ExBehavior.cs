@@ -36,6 +36,12 @@ namespace Enemy.TheExecutor
             Dash();
             stunAni = animator;
             _collider2D.enabled = false;
+            maxHp = 6;
+            curHp = maxHp;
+            isDamaged = false;
+            inFiniteTime = 1f;
+            bossName = "집행자";
+            SetUpBoss();
         }
 
         private void FixedUpdate()
@@ -59,6 +65,8 @@ namespace Enemy.TheExecutor
             if (isStun)
             {
                 HideHitBox();
+                if (isDamaged) return;
+                StartCoroutine(GetDamage(inFiniteTime));
             }
 
         }
