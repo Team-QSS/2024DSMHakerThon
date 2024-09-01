@@ -431,7 +431,7 @@ MonoBehaviour:
   stunTime: 0
   moveSet:
   - 4
-  - 10
+  - 12
   - 20
   _collider2D: {fileID: 4366154897032864916}
 --- !u!96 &9024202373413549158

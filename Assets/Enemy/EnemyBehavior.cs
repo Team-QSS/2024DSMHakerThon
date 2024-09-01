@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Enemy.TheExecutor;
 using player.script;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -39,8 +36,8 @@ public class EnemyBehavior : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            Debug.Log(2);
+            Debug.Log("die");
+            SceneManager.LoadScene("YouDied");
         }
-        Debug.Log(1);
     }
 }

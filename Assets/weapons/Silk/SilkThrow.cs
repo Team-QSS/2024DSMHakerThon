@@ -67,12 +67,6 @@ namespace weapons.Silk
                     Invoke(nameof(ParticleDisable), 3f);
                 }
             }
-            else if (col.CompareTag("enemy"))
-            {
-                joint2D.enabled = true;
-                isGraped = true;
-                executePos = gameObject.transform.position;
-            }
         }
 
         private void ParticleDisable()

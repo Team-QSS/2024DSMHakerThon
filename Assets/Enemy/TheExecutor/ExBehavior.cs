@@ -35,6 +35,7 @@ namespace Enemy.TheExecutor
             //tr.emitting = false;
             Dash();
             stunAni = animator;
+            _collider2D.enabled = false;
         }
 
         private void FixedUpdate()
@@ -53,6 +54,11 @@ namespace Enemy.TheExecutor
             if (!isDashing)
             {
                 gameObject.transform.localScale = playerFlipDirection < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
+            }
+
+            if (isStun)
+            {
+                HideHitBox();
             }
 
         }
@@ -93,12 +99,12 @@ namespace Enemy.TheExecutor
 
         public void ShowHitBox()
         {
-            _collider2D.enabled =!_collider2D.enabled;
+            _collider2D.enabled = true;
         }
 
         public void HideHitBox()
         {
-            _collider2D.enabled = !_collider2D.enabled;
+            _collider2D.enabled = false;
         }
 
         private void Chase()
@@ -123,6 +129,7 @@ namespace Enemy.TheExecutor
         public void PatternEnd()
         {
             isStun = false;
+            HideHitBox();
             NextPattern(attackRange);
         }
 
