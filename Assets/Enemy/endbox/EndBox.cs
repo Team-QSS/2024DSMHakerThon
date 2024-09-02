@@ -1,4 +1,6 @@
 using System.Collections;
+using Enemy.TheExecutor;
+using player.script;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,36 +11,22 @@ namespace Enemy.endbox
         [SerializeField] private GameObject deathTimeLine;
         [SerializeField] private GameObject youDied;
         [SerializeField] private GameObject slickBar;
-
+        private ExBehavior exBehavior;
         private void Start()
         {
+            exBehavior=exBehavior.transform.parent.gameObject.GetComponent<ExBehavior>();
             deathTimeLine.SetActive(false);
             youDied.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player")&&!exBehavior.isStun)
             {
-                /*
-                Time.timeScale = 0;
-                deathTimeLine.SetActive(true);
-                slickBar.SetActive(false);
-                StartCoroutine(Death());
-                */
+                Debug.Log("die");
                 SceneManager.LoadScene("YouDied");
             }
         }
-
-        private static IEnumerator Death()
-        {
-            yield return new WaitForSecondsRealtime(5);
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            /*
-        Process.Start(Application.dataPath + "/../SANABANG.exe");
-        Application.Quit();
-        */
-        }
+        
     }
 }

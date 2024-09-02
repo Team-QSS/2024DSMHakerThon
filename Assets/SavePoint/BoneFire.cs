@@ -2,6 +2,7 @@
 using System.Collections;
 using player.script;
 using SaveAndLoad;
+using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -36,6 +37,7 @@ namespace SavePoint
         
         public IEnumerator BoneFireFlow()
         {
+            PlayerMove.canmove = false;
             PlayerInteraction.isInteracting = true;
             SaveData.SaveScene();
             SaveData.playerStatus.lastLocation = PlayerMove.playerPos;
@@ -47,7 +49,7 @@ namespace SavePoint
             _light2D.enabled = true;
             _ani.SetBool("lit",true);
             PlayerInteraction.isInteracting = false;
-
+            PlayerMove.canmove = true;
         }
 
         private void ActivedBoneFire()

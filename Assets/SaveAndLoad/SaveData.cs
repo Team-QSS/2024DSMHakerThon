@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,29 @@ namespace SaveAndLoad
             playerStatus.boneFireLocation = new Vector2(0, 0);
             playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex+1;
             SaveToJson();
+        }
+
+        public static void SetAbilities(string ability)
+        {
+            LoadFromJson();
+            if (playerStatus.playerAbility.Contains(ability)) return;
+            playerStatus.playerAbility.Add(ability);
+            Debug.Log(playerStatus.playerAbility);
+            SaveToJson();
+        }
+
+        public static void GetAbilities()
+        {
+            LoadFromJson();
+            if (playerStatus.playerAbility is null) return;
+            if (playerStatus.playerAbility.Contains("parry"))
+            {
+                player.script.Parry.unlockParry = true;
+            }
+            if (playerStatus.playerAbility.Contains("dash"))
+            {
+                player.script.PlayerMove.unlockDash = true;
+            }
         }
         
         public static void LoadScene()
@@ -51,6 +75,7 @@ namespace SaveAndLoad
         public static void LoadFromJson()
         {
             if (File.Exists(SavePath)) playerStatus = JsonUtility.FromJson<PlayerStatus>(File.ReadAllText(SavePath));
+            Debug.Log(SavePath);
         }
 
         public static void DeleteInJson() => File.Delete(SavePath);
@@ -60,14 +85,8 @@ namespace SaveAndLoad
     public class PlayerStatus
     {
         public int stageTag;
-        /// <summary>
-        /// playerAbility를 Dictionary&lt;string, bool&gt;에서 HashSet&lt;string&gt;로 바꾼 이유<br/>
-        /// 얻는 값이 bool일경우 HashSet에서의 .contains로 확인이 가능함.<br/>
-        /// playerAbility["키"] = true; 에서<br/>
-        /// PlayerAbility.Add("키"); 로 검사값 추가 및 제거 가능.
-        /// </summary>
-        public HashSet<string> PlayerAbility;
         public Vector2 lastLocation;
         public Vector2 boneFireLocation;
+        public List<string> playerAbility;
     }
 }

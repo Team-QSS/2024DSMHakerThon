@@ -7,8 +7,9 @@ using Random = UnityEngine.Random;
 
 namespace Enemy.TheExecutor
 {
-    public class ExBehavior : MonoBehaviour
+    public class ExBehavior : EnemyBehavior
     {
+        [SerializeField] private GameObject energyBall;
         private GameObject player;
         private Vector2 playerPos;
         private bool isFirst; 
@@ -19,11 +20,15 @@ namespace Enemy.TheExecutor
         private int randomBehavior;
         private float playerFlipDirection;
         private bool isDashing;
+        private bool isUnder;
         private bool isBehaving;
+        private bool isSpiting;
         [SerializeField] private BoxCollider2D _collider2D;
         //private TrailRenderer tr;
         private void Start()
         {
+            isSpiting = false;
+            isUnder = false;
             isBehaving = false;
             isDashing = false;
             animator = GetComponent<Animator>();
@@ -34,12 +39,30 @@ namespace Enemy.TheExecutor
             //tr = GetComponent<TrailRenderer>();
             //tr.emitting = false;
             Dash();
+            stunAni = animator;
+            _collider2D.enabled = false;
+            maxHp = 7;
+            curHp = maxHp;
+            isDamaged = false;
+            inFiniteTime = 1.2f;
+            bossName = "집행자";
+            SetUpBoss();
         }
 
         private void FixedUpdate()
         {
             var position = player.transform.position;
             playerPos = new Vector2(position.x, position.y);
+            if (playerPos.y>gameObject.transform.position.y)
+            {
+                isUnder = true;
+                Debug.Log(true);
+            }
+            else
+            {
+                isUnder = false;
+                 Debug.Log(false);
+            }
         }
 
         private void Update()
@@ -54,50 +77,76 @@ namespace Enemy.TheExecutor
                 gameObject.transform.localScale = playerFlipDirection < 0 ? new Vector3(-1.3f,1.3f,1.3f) : new Vector3(1.3f,1.3f,1.3f);
             }
 
+            if (isStun)
+            {
+                HideHitBox();
+                if (isDamaged) return;
+                StartCoroutine(GetDamage(inFiniteTime));
+            }
+
         }
 
         private void NextPattern(float atkRange)
         {
-            if (atkRange < moveSet[0])
+            if (isStun) return;
+            if (isUnder)
             {
-                Attack();
-            }
-
-            else if (atkRange > moveSet[1] && atkRange < moveSet[2])
-            {
-                
-                Dash();
-            }
-            else if (atkRange > moveSet[0] && atkRange < moveSet[1])
-            {
-                randomBehavior = Random.Range(0, 3);
-                switch (randomBehavior)
-                {
-                    default:
-                        Chase();
-                        break;
-                    case 1:
-                        Dash();
-                        break;
-                }
+                Debug.Log("spit");
+                Spit();
             }
             else
             {
-                Chase();
-            }
+                if (atkRange < moveSet[0])
+                {
+                    Attack();
+                }
 
+                else if (atkRange > moveSet[1] && atkRange < moveSet[2])
+                {
+                
+                    Dash();
+                }
+                else if (atkRange > moveSet[0] && atkRange < moveSet[1])
+                {
+                    randomBehavior = Random.Range(0, 3);
+                    switch (randomBehavior)
+                    {
+                        default:
+                            Chase();
+                            break;
+                        case 2:
+                            Dash();
+                            break;
+                    }
+                }
+                else
+                {
+                    Chase();
+                }
+            }
+            
         }
 
         public void ShowHitBox()
         {
-            _collider2D.enabled =!_collider2D.enabled;
+            _collider2D.enabled = true;
         }
 
         public void HideHitBox()
         {
-            _collider2D.enabled = !_collider2D.enabled;
+            _collider2D.enabled = false;
         }
 
+        private void Spit()
+        {
+            if (isSpiting) return;
+            StartCoroutine(SpitFlow());
+        }
+
+        public void Fire()
+        {
+            Instantiate(energyBall, gameObject.transform.position, Quaternion.identity);
+        }
         private void Chase()
         {
             StartCoroutine(ChaseFlow());
@@ -106,17 +155,21 @@ namespace Enemy.TheExecutor
         private void Dash()
         {
             if (isDashing) return;
+            isAttacking = true;
             StartCoroutine(DashFlow());
         }
 
         private void Attack()
         {
+            isAttacking = true;
             StartCoroutine(AttackFlow());
         }
 
         
         public void PatternEnd()
         {
+            isStun = false;
+            HideHitBox();
             NextPattern(attackRange);
         }
 
@@ -131,7 +184,24 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            isAttacking = false;
 
+        }
+
+        IEnumerator SpitFlow()
+        {
+            isSpiting = true;
+            Debug.Log(2);
+            animator.SetBool("isidle",false);
+            animator.SetBool("ischase",false); 
+            animator.SetBool("isdash",false);
+            animator.SetTrigger("isspit");
+            yield return new WaitForSeconds(0.8f);
+            animator.SetBool("isidle",true);
+            animator.SetBool("ischase",false);
+            animator.SetBool("isdash",false);
+            yield return new WaitForSeconds(1f);
+            isSpiting = false;
         }
         IEnumerator DashFlow()
         {
@@ -154,6 +224,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
             isDashing = false;
+            isAttacking = false;
 
         }
 
@@ -163,7 +234,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",true);
             animator.SetBool("isdash",false);
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -4f, 0f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -3f, 0f);
             yield return new WaitForSeconds(0.6f);
             rb2D.velocity = new Vector2(0f, 0f);
             animator.SetBool("isidle",true);

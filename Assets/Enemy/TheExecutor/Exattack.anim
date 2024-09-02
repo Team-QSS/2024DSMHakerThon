@@ -974,7 +974,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.43333334
+  - time: 0.4
     functionName: HideHitBox
     data: 
     objectReferenceParameter: {fileID: 0}
