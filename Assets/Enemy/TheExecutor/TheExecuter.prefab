@@ -430,6 +430,7 @@ MonoBehaviour:
   isStun: 0
   stunTime: 0
   isDamaged: 0
+  energyBall: {fileID: 2522871241656162075, guid: 0ff1ffbe23be3224992da8d5e4cac60b, type: 3}
   moveSet:
   - 4
   - 14

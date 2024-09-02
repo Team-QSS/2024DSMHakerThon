@@ -9,6 +9,7 @@ namespace Enemy.TheExecutor
 {
     public class ExBehavior : EnemyBehavior
     {
+        [SerializeField] private GameObject energyBall;
         private GameObject player;
         private Vector2 playerPos;
         private bool isFirst; 
@@ -40,7 +41,7 @@ namespace Enemy.TheExecutor
             Dash();
             stunAni = animator;
             _collider2D.enabled = false;
-            maxHp = 10;
+            maxHp = 7;
             curHp = maxHp;
             isDamaged = false;
             inFiniteTime = 1.2f;
@@ -60,7 +61,7 @@ namespace Enemy.TheExecutor
             else
             {
                 isUnder = false;
-                Debug.Log(false);
+                 Debug.Log(false);
             }
         }
 
@@ -141,6 +142,11 @@ namespace Enemy.TheExecutor
             if (isSpiting) return;
             StartCoroutine(SpitFlow());
         }
+
+        public void Fire()
+        {
+            Instantiate(energyBall, gameObject.transform.position, Quaternion.identity);
+        }
         private void Chase()
         {
             StartCoroutine(ChaseFlow());
@@ -190,7 +196,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("ischase",false); 
             animator.SetBool("isdash",false);
             animator.SetTrigger("isspit");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
