@@ -19,11 +19,13 @@ namespace Enemy.TheExecutor
         private int randomBehavior;
         private float playerFlipDirection;
         private bool isDashing;
+        private bool isUnder;
         private bool isBehaving;
         [SerializeField] private BoxCollider2D _collider2D;
         //private TrailRenderer tr;
         private void Start()
         {
+            isUnder = false;
             isBehaving = false;
             isDashing = false;
             animator = GetComponent<Animator>();
@@ -48,6 +50,16 @@ namespace Enemy.TheExecutor
         {
             var position = player.transform.position;
             playerPos = new Vector2(position.x, position.y);
+            if (playerPos.y>gameObject.transform.position.y)
+            {
+                isUnder = true;
+                Debug.Log(true);
+            }
+            else
+            {
+                isUnder = false;
+                Debug.Log(false);
+            }
         }
 
         private void Update()
@@ -74,35 +86,41 @@ namespace Enemy.TheExecutor
         private void NextPattern(float atkRange)
         {
             if (isStun) return;
-            if (atkRange < moveSet[0])
+            if (isUnder)
             {
-                Attack();
-            }
-
-            else if (atkRange > moveSet[1] && atkRange < moveSet[2])
-            {
-                
-                Dash();
-            }
-            else if (atkRange > moveSet[0] && atkRange < moveSet[1])
-            {
-                randomBehavior = Random.Range(0, 3);
-                switch (randomBehavior)
-                {
-                    default:
-                        Chase();
-                        break;
-                    case 1:
-                        Dash();
-                        break;
-                }
+                Spit();
             }
             else
             {
-                Chase();
+                if (atkRange < moveSet[0])
+                {
+                    Attack();
+                }
+
+                else if (atkRange > moveSet[1] && atkRange < moveSet[2])
+                {
+                
+                    Dash();
+                }
+                else if (atkRange > moveSet[0] && atkRange < moveSet[1])
+                {
+                    randomBehavior = Random.Range(0, 3);
+                    switch (randomBehavior)
+                    {
+                        default:
+                            Chase();
+                            break;
+                        case 1:
+                            Dash();
+                            break;
+                    }
+                }
+                else
+                {
+                    Chase();
+                }
             }
-
-
+            
         }
 
         public void ShowHitBox()
@@ -115,6 +133,10 @@ namespace Enemy.TheExecutor
             _collider2D.enabled = false;
         }
 
+        private void Spit()
+        {
+            StartCoroutine(SpitFlow());
+        }
         private void Chase()
         {
             StartCoroutine(ChaseFlow());
@@ -147,13 +169,28 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            animator.SetBool("isspit",false);
             animator.SetTrigger("isattack");
             yield return new WaitForSeconds(0.7f);
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            animator.SetBool("isspit",false);
             isAttacking = false;
 
+        }
+
+        IEnumerator SpitFlow()
+        {
+        animator.SetBool("isidle",false);
+        animator.SetBool("ischase",false);
+        animator.SetBool("isdash",false);
+        animator.SetBool("isspit",true);
+        yield return new WaitForSeconds(1.1f);
+        animator.SetBool("isidle",true);
+        animator.SetBool("ischase",false);
+        animator.SetBool("isdash",false);
+        animator.SetBool("isspit",false);
         }
         IEnumerator DashFlow()
         {
@@ -163,6 +200,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",true);
+            animator.SetBool("isspit",false);
             yield return new WaitForSeconds(0.9f);
             rb2D.gravityScale = 0f;
             //tr.emitting = true;
@@ -175,6 +213,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            animator.SetBool("isspit",false);
             isDashing = false;
             isAttacking = false;
 
@@ -186,12 +225,14 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",true);
             animator.SetBool("isdash",false);
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -4f, 0f);
+            animator.SetBool("isspit",false);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -2.5f, 0f);
             yield return new WaitForSeconds(0.6f);
             rb2D.velocity = new Vector2(0f, 0f);
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            animator.SetBool("isspit",false);
         }
         
 
