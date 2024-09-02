@@ -21,10 +21,12 @@ namespace Enemy.TheExecutor
         private bool isDashing;
         private bool isUnder;
         private bool isBehaving;
+        private bool isSpiting;
         [SerializeField] private BoxCollider2D _collider2D;
         //private TrailRenderer tr;
         private void Start()
         {
+            isSpiting = false;
             isUnder = false;
             isBehaving = false;
             isDashing = false;
@@ -38,10 +40,10 @@ namespace Enemy.TheExecutor
             Dash();
             stunAni = animator;
             _collider2D.enabled = false;
-            maxHp = 6;
+            maxHp = 10;
             curHp = maxHp;
             isDamaged = false;
-            inFiniteTime = 1f;
+            inFiniteTime = 1.2f;
             bossName = "집행자";
             SetUpBoss();
         }
@@ -88,6 +90,7 @@ namespace Enemy.TheExecutor
             if (isStun) return;
             if (isUnder)
             {
+                Debug.Log("spit");
                 Spit();
             }
             else
@@ -110,7 +113,7 @@ namespace Enemy.TheExecutor
                         default:
                             Chase();
                             break;
-                        case 1:
+                        case 2:
                             Dash();
                             break;
                     }
@@ -135,6 +138,7 @@ namespace Enemy.TheExecutor
 
         private void Spit()
         {
+            if (isSpiting) return;
             StartCoroutine(SpitFlow());
         }
         private void Chase()
@@ -169,28 +173,28 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
-            animator.SetBool("isspit",false);
             animator.SetTrigger("isattack");
             yield return new WaitForSeconds(0.7f);
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
-            animator.SetBool("isspit",false);
             isAttacking = false;
 
         }
 
         IEnumerator SpitFlow()
         {
-        animator.SetBool("isidle",false);
-        animator.SetBool("ischase",false);
-        animator.SetBool("isdash",false);
-        animator.SetBool("isspit",true);
-        yield return new WaitForSeconds(1.1f);
-        animator.SetBool("isidle",true);
-        animator.SetBool("ischase",false);
-        animator.SetBool("isdash",false);
-        animator.SetBool("isspit",false);
+            isSpiting = true;
+            Debug.Log(2);
+            animator.SetBool("isidle",false);
+            animator.SetBool("ischase",false); 
+            animator.SetBool("isdash",false);
+            animator.SetTrigger("isspit");
+            yield return new WaitForSeconds(0.5f);
+            animator.SetBool("isidle",true);
+            animator.SetBool("ischase",false);
+            animator.SetBool("isdash",false);
+            isSpiting = false;
         }
         IEnumerator DashFlow()
         {
@@ -200,7 +204,6 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",true);
-            animator.SetBool("isspit",false);
             yield return new WaitForSeconds(0.9f);
             rb2D.gravityScale = 0f;
             //tr.emitting = true;
@@ -213,7 +216,6 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
-            animator.SetBool("isspit",false);
             isDashing = false;
             isAttacking = false;
 
@@ -225,14 +227,12 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",true);
             animator.SetBool("isdash",false);
-            animator.SetBool("isspit",false);
-            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -2.5f, 0f);
+            rb2D.velocity = new Vector2(gameObject.transform.localScale.x * -3f, 0f);
             yield return new WaitForSeconds(0.6f);
             rb2D.velocity = new Vector2(0f, 0f);
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
-            animator.SetBool("isspit",false);
         }
         
 

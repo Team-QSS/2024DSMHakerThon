@@ -429,9 +429,10 @@ MonoBehaviour:
   isAttacking: 0
   isStun: 0
   stunTime: 0
+  isDamaged: 0
   moveSet:
   - 4
-  - 12
+  - 14
   - 20
   _collider2D: {fileID: 4366154897032864916}
 --- !u!96 &9024202373413549158
