@@ -200,6 +200,7 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",true);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
+            yield return new WaitForSeconds(1f);
             isSpiting = false;
         }
         IEnumerator DashFlow()
