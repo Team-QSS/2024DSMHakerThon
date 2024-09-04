@@ -27,24 +27,16 @@ public class NextText : MonoBehaviour
             player.SetActive(true);
             SceneManager.LoadScene("Excuter");
         }
-        switch (totalTag)
+
+        cutSceneText.text = totalTag switch
         {
-            case 0:
-                cutSceneText.text = "어딜 그리도 급히 가시나";
-                break;
-            case 1:
-                cutSceneText.text = "달빛 잃은 자여";
-                break;
-            case 2:
-                cutSceneText.text = "아직 해는 지지 않았다..";
-                break;
-            case 3:
-                cutSceneText.text = "달이 떠도 너희는 안식을 가질 수 없지";
-                break;
-            case 4:
-                cutSceneText.text = "달의 축복없는 모든 자에게 고통을..";
-                break;
-        }
+            0 => "어딜 그리도 급히 가시나",
+            1 => "달빛 잃은 자여",
+            2 => "아직 해는 지지 않았다..",
+            3 => "달이 떠도 너희는 안식을 가질 수 없지",
+            4 => "달의 축복없는 모든 자에게 고통을..",
+            _ => cutSceneText.text
+        };
     }
 
     public void NextTag()
