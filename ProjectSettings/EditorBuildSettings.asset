@@ -18,11 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1-1.unity
     guid: ddd98857167afa745bd025152cbe5b4d
   - enabled: 1
+    path: Assets/Scenes/ExcuterStart.unity
+    guid: 0623a257cfdb8614681860448d2c5364
+  - enabled: 1
     path: Assets/Scenes/Excuter.unity
     guid: 4a99fbac2ffc69548afb4e637e70ece6
   - enabled: 1
     path: Assets/Scenes/Stage2_Rework.unity
     guid: 20a306320ed7fb347bd84e179fc35882
+  - enabled: 1
+    path: Assets/Scenes/ExcuterEnd.unity
+    guid: 7273a1350b736e6488a8dbdd1afef027
   - enabled: 1
     path: Assets/Scenes/Stage3.unity
     guid: b548dff3d89c53a46be9e845ede6d0e8
