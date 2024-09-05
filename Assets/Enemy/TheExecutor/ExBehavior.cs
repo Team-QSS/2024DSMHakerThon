@@ -81,7 +81,7 @@ namespace Enemy.TheExecutor
             {
                 HideHitBox();
                 if (isDamaged) return;
-                StartCoroutine(GetDamage(inFiniteTime));
+                StartCoroutine(BossGetDamage(inFiniteTime));
             }
 
         }

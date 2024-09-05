@@ -14,9 +14,9 @@ namespace Enemy.endbox
         private ExBehavior exBehavior;
         private void Start()
         {
-            exBehavior=exBehavior.transform.parent.gameObject.GetComponent<ExBehavior>();
-            deathTimeLine.SetActive(false);
-            youDied.SetActive(false);
+            //exBehavior=transform.parent.gameObject.GetComponent<ExBehavior>();
+            //deathTimeLine.SetActive(false);
+            //youDied.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -1,5 +1,6 @@
 using System.Collections;
 using player.script;
+using SaveAndLoad;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -52,12 +53,17 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    protected IEnumerator GetDamage(float infinity)
+    protected IEnumerator BossGetDamage(float infinity)
     {
         isDamaged = true;
         curHp--;
         bossSlider=GameObject.FindWithTag("bossHp").GetComponent<Slider>();
         bossSlider.value = curHp;
+        if (curHp<=0)
+        {
+            SaveData.SavePreviousScene();
+            SceneManager.LoadScene("ExcuterEnd");
+        }
         yield return new WaitForSeconds(infinity);
         isDamaged = false;
     }
