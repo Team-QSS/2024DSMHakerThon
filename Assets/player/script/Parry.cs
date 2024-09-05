@@ -1,4 +1,5 @@
 using System.Data;
+using Managers;
 using SaveAndLoad;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,9 +24,11 @@ namespace player.script
 
         private void Update()
         {
-            if (unlockParry&&Input.GetMouseButtonDown(0)&&!isParrying)
+            if (unlockParry&&Input.GetMouseButtonDown(0)&&!isParrying&&PlayerMove.canmove)
             {
                 ani.SetTrigger("parry");
+                //AudioManager.PlaySoundInstance("Audio/Dash");
+                AudioManager.PlaySoundInstance("Audio/PARRY_PROCESS");
             }
         }
 

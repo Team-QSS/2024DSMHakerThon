@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace Enemy.TheExecutor
@@ -46,6 +47,7 @@ namespace Enemy.TheExecutor
             isDamaged = false;
             inFiniteTime = 1.2f;
             bossName = "집행자";
+            cleared = false;
             SetUpBoss();
         }
 
@@ -62,6 +64,11 @@ namespace Enemy.TheExecutor
             {
                 isUnder = false;
                  Debug.Log(false);
+            }
+
+            if (cleared)
+            {
+                SceneManager.LoadScene("ExcuterEnd");
             }
         }
 
