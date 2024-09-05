@@ -1,26 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using player.script;
 using SaveAndLoad;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using weapons.Silk;
 
-public class deathButtonManager : MonoBehaviour
+namespace deathTimeLine
 {
-    private void Start()
+    public class DeathButtonManager : MonoBehaviour
     {
-        PlayerMove.Instance.gameObject.SetActive(false);
-    }
+        private void Start()
+        {
+            PlayerMove.Instance.gameObject.SetActive(false);
+        }
 
-    public void Load()
-    {
-        Destroy(PlayerMove.Instance.gameObject);
-        SaveData.LoadScene();
-    }
+        public void Load()
+        {
+            Destroy(PlayerMove.Instance.gameObject);
+            Destroy(SilkThrow.Instance.gameObject);
+            SaveData.LoadScene();
+        }
 
-    public void toMain()
-    {
-        SceneManager.LoadScene("TitleScene");
+        public void toMain()
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 }

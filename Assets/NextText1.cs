@@ -3,6 +3,7 @@ using player.script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using weapons.Silk;
 
 public class NextText1: MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class NextText1: MonoBehaviour
         if (totalTag >= 5)
         {
             Destroy(PlayerMove.Instance.gameObject);
+            Destroy(SilkThrow.Instance.gameObject);
             SceneManager.LoadScene("Stage2_Rework");
         }
 
