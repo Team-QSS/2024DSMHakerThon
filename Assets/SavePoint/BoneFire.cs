@@ -2,7 +2,6 @@
 using System.Collections;
 using player.script;
 using SaveAndLoad;
-using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
