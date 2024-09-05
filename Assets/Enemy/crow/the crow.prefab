@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8632719945670782443}
   - component: {fileID: 4399664350867835067}
   - component: {fileID: 2321530196043592123}
+  - component: {fileID: 628578838724194049}
   m_Layer: 0
   m_Name: the crow
   m_TagString: crow
@@ -125,6 +126,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56346abb2ddd3f446bafb9654452008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &628578838724194049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383613870524031246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240eb94393b622c4982c1d0a1a1d477f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 0
+  curHp: 0
+  isAttacking: 0
+  isStun: 0
+  stunTime: 0
+  isDamaged: 0
 --- !u!1 &686149843989951924
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,13 @@ namespace StageManager
             if (other.CompareTag("Player"))
             {
                 SilkThrow.Instance.gameObject.SetActive(false);
+                if (SceneManager.GetActiveScene().buildIndex == 6)
+                {
+                    SceneManager.LoadScene("LastScene");
+                    return;
+                }
                 SceneManager.LoadScene(SaveData.playerStatus.stageTag + 1);
+
             }
         }
     }

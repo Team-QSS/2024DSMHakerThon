@@ -120,7 +120,7 @@ namespace player.script
             }
             else playerAnim.SetBool(IsJumping,false);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash) StartCoroutine(Dash());
+            if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&&canmove) StartCoroutine(Dash());
             
             if (horizontal > 0 && !isFacingRight&&canmove) Flip();
             if (horizontal < 0 && isFacingRight&&canmove) Flip();

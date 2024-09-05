@@ -58,12 +58,10 @@ namespace Enemy.TheExecutor
             if (playerPos.y>gameObject.transform.position.y)
             {
                 isUnder = true;
-                Debug.Log(true);
             }
             else
             {
                 isUnder = false;
-                 Debug.Log(false);
             }
 
             if (cleared)
@@ -98,7 +96,6 @@ namespace Enemy.TheExecutor
             if (isStun) return;
             if (isUnder)
             {
-                Debug.Log("spit");
                 Spit();
             }
             else
@@ -168,7 +165,6 @@ namespace Enemy.TheExecutor
 
         private void Attack()
         {
-            isAttacking = true;
             StartCoroutine(AttackFlow());
         }
 
@@ -180,7 +176,7 @@ namespace Enemy.TheExecutor
             NextPattern(attackRange);
         }
 
-        IEnumerator AttackFlow()
+        private IEnumerator AttackFlow()
         {
 
             animator.SetBool("isidle",false);
@@ -191,14 +187,12 @@ namespace Enemy.TheExecutor
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",false);
-            isAttacking = false;
 
         }
 
-        IEnumerator SpitFlow()
+        private IEnumerator SpitFlow()
         {
             isSpiting = true;
-            Debug.Log(2);
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false); 
             animator.SetBool("isdash",false);
@@ -210,11 +204,12 @@ namespace Enemy.TheExecutor
             yield return new WaitForSeconds(1f);
             isSpiting = false;
         }
-        IEnumerator DashFlow()
+
+        private IEnumerator DashFlow()
         {
 
             isDashing = true;
-            float originalGravity = rb2D.gravityScale;
+            var originalGravity = rb2D.gravityScale;
             animator.SetBool("isidle",false);
             animator.SetBool("ischase",false);
             animator.SetBool("isdash",true);

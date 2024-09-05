@@ -22,7 +22,6 @@ namespace furniture.radder
             var hit = Physics2D.Raycast(transform.position, playerMove.isFacingRight ? Vector2.right : Vector2.left,
                 maxDistance, LayerMask.GetMask("platform"));
             if (!hit.collider) return;
-            Debug.Log(hit.collider.name);
             if (hit.collider.name != "Radder") return;
             if (Input.GetKey(KeyCode.W)) rb.velocity = new Vector2(rb.velocity.x, climbSpeed); // 클라이밍 속도 증가
         }
