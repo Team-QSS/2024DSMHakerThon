@@ -8,6 +8,7 @@ public class NextText1: MonoBehaviour
 {
     private int totalTag;
     private TextMeshProUGUI cutSceneText;
+    private GameObject silk;
     
     private void Start()
     {
@@ -19,7 +20,7 @@ public class NextText1: MonoBehaviour
     {
         if (totalTag >= 5)
         {
-            PlayerMove.Instance.gameObject.SetActive(true);
+            Destroy(PlayerMove.Instance.gameObject);
             SceneManager.LoadScene("Stage2_Rework");
         }
 

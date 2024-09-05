@@ -8,12 +8,17 @@ public class NextText : MonoBehaviour
     private int totalTag;
     private TextMeshProUGUI cutSceneText;
     private GameObject player;
-    
+    private GameObject silk;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        player.SetActive(false);
+
+        if (player.activeSelf)
+        {
+            player.SetActive(false);
+        }
+        
         totalTag = 0;
         cutSceneText = GameObject.FindWithTag("timelinetmp").GetComponent<TextMeshProUGUI>();
         Check();
