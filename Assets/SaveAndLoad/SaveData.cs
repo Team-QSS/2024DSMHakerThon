@@ -25,13 +25,18 @@ namespace SaveAndLoad
             playerStatus.stageTag = SceneManager.GetActiveScene().buildIndex+1;
             SaveToJson();
         }
+        
+        public static bool HasAbilities(string ability)
+        {
+            LoadFromJson();
+            return playerStatus.playerAbility.Contains(ability);
+        }
 
         public static void SetAbilities(string ability)
         {
             LoadFromJson();
             if (playerStatus.playerAbility.Contains(ability)) return;
             playerStatus.playerAbility.Add(ability);
-            Debug.Log(playerStatus.playerAbility);
             SaveToJson();
         }
 

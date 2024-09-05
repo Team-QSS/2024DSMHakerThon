@@ -10,16 +10,14 @@ public class TheOrb : MonoBehaviour
     private GameObject parentObj;
     private AbilityItemProto abilityItem;
     [SerializeField] private GameObject descriptionText;
-
+    [SerializeField] private string ability;
     private void Start()
     {
         parentObj = transform.parent.gameObject;
         abilityItem = parentObj.GetComponent<AbilityItemProto>();
-        if (Parry.unlockParry)
-        {
-            descriptionText.SetActive(false);
-            Destroy(parentObj);
-        }
+        if (!SaveData.HasAbilities(ability)) return;
+        descriptionText.SetActive(false);
+        Destroy(parentObj);
     }
 
     private void Update()
