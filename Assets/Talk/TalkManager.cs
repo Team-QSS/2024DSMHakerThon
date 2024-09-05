@@ -93,7 +93,6 @@ namespace Talk
                 return;
             }
             progress++;
-            Debug.Log(lines[progress] + progress);
             var data = lines[progress].Split("-");
             switch (data[0])
             {
@@ -177,7 +176,6 @@ namespace Talk
             if (focusedTalkerTemp != null && talkerOnScene[(int)focusedTalkerTemp])
             {
                 talkerOnScene[(int)focusedTalkerTemp].GetComponent<Animator>().Play("disfocus");
-                Debug.Log($"disFocused{focusedTalkerTemp}");
             }
             focusedTalkerTemp = null;
             ClickButton();

@@ -44,11 +44,7 @@ public class EnemyBehavior : MonoBehaviour
 
 
         }
-        else if (other.CompareTag("Player"))
-        {
-            Debug.Log("die");
-            SceneManager.LoadScene("YouDied");
-        }
+        else if (other.CompareTag("Player")) SceneManager.LoadScene("YouDied");
     }
 
     protected IEnumerator BossGetDamage(float infinity)

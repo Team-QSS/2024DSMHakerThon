@@ -80,7 +80,6 @@ namespace SaveAndLoad
         public static void LoadFromJson()
         {
             if (File.Exists(SavePath)) playerStatus = JsonUtility.FromJson<PlayerStatus>(File.ReadAllText(SavePath));
-            Debug.Log(SavePath);
         }
 
         public static void DeleteInJson() => File.Delete(SavePath);
