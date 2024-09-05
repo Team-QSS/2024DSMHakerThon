@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using player.script;
 using SaveAndLoad;
 using TMPro;
@@ -19,6 +20,7 @@ public class EnemyBehavior : MonoBehaviour
     protected Animator stunAni;
     protected Slider bossSlider;
     protected TextMeshProUGUI bossTMP;
+    protected bool cleared;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,20 +30,16 @@ public class EnemyBehavior : MonoBehaviour
         isAttacking = false;
         isStun = false;
         isDamaged = false;
-
+        cleared = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")&&isAttacking&&Parry.isParrying)
         {
             isStun = true;
+            AudioManager.PlaySoundInstance("Audio/PARRY_SUCCESS");
             stunAni.SetTrigger("isstun");
 
 
@@ -62,7 +60,8 @@ public class EnemyBehavior : MonoBehaviour
         if (curHp<=0)
         {
             SaveData.SavePreviousScene();
-            SceneManager.LoadScene("ExcuterEnd");
+            cleared = true;
+
         }
         yield return new WaitForSeconds(infinity);
         isDamaged = false;

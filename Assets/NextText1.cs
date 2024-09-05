@@ -20,7 +20,7 @@ public class NextText1: MonoBehaviour
         if (totalTag >= 5)
         {
             PlayerMove.Instance.gameObject.SetActive(true);
-            SceneManager.LoadScene("Excuter");
+            SceneManager.LoadScene("Stage2_Rework");
         }
 
         cutSceneText.text = totalTag switch
