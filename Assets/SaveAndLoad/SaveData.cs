@@ -39,20 +39,6 @@ namespace SaveAndLoad
             playerStatus.playerAbility.Add(ability);
             SaveToJson();
         }
-
-        public static void GetAbilities()
-        {
-            LoadFromJson();
-            if (playerStatus.playerAbility is null) return;
-            if (playerStatus.playerAbility.Contains("parry"))
-            {
-                player.script.Parry.unlockParry = true;
-            }
-            if (playerStatus.playerAbility.Contains("dash"))
-            {
-                player.script.PlayerMove.unlockDash = true;
-            }
-        }
         
         public static void LoadScene()
         {
@@ -82,7 +68,11 @@ namespace SaveAndLoad
             if (File.Exists(SavePath)) playerStatus = JsonUtility.FromJson<PlayerStatus>(File.ReadAllText(SavePath));
         }
 
-        public static void DeleteInJson() => File.Delete(SavePath);
+        public static void DeleteInJson()
+        {
+            playerStatus = new PlayerStatus();
+            SaveToJson();
+        }
     }
     
     [Serializable]

@@ -18,8 +18,7 @@ namespace player.script
         public float jumpingPower = 16f;
         public float speed = 8f;
         public bool isFacingRight = true;
-    
-        public static bool unlockDash;
+        
         private bool canDash = true;
         private bool isDashing;
         public float dashingPower = 24f;
@@ -62,8 +61,7 @@ namespace player.script
             playerAnim = GetComponent<Animator>();
             tr.emitting = false;
             stunned = false;
-            unlockDash = false;
-            SaveData.GetAbilities();
+            SaveData.LoadFromJson();
             canmove = true;
         }
 
@@ -164,7 +162,7 @@ namespace player.script
 
         private IEnumerator Dash()
         {
-            if (!unlockDash) yield break;
+            if (!SaveData.HasAbilities("dash")) yield break;
             canDash = false;
             isDashing = true;
             var originalGravity = rb.gravityScale;

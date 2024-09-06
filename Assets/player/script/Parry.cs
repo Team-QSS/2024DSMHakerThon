@@ -9,7 +9,6 @@ namespace player.script
     
     public class Parry : MonoBehaviour
     {
-        public static bool unlockParry;
         public static bool isParrying;
         private Animator ani;
         private GameObject rotateCore;
@@ -19,12 +18,12 @@ namespace player.script
             rotateCore = GameObject.Find("rotatecore").gameObject;
             rotateCore.SetActive(false);
             isParrying = false;
-            SaveData.GetAbilities();
+            SaveData.LoadFromJson();
         }
 
         private void Update()
         {
-            if (unlockParry&&Input.GetMouseButtonDown(0)&&!isParrying&&PlayerMove.canmove)
+            if (SaveData.HasAbilities("parry")&&Input.GetMouseButtonDown(0)&&!isParrying&&PlayerMove.canmove)
             {
                 ani.SetTrigger("parry");
                 //AudioManager.PlaySoundInstance("Audio/Dash");

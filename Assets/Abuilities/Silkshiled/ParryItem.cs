@@ -11,7 +11,6 @@ class ParryItem : AbilityItemProto
     protected override void SetAbil()
     {
         PlayerMove.canmove = false;
-        Parry.unlockParry = true;
         SaveData.SetAbilities("parry");
     }
 }
