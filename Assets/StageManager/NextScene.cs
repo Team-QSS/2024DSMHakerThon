@@ -19,8 +19,8 @@ namespace StageManager
                     SceneManager.LoadScene("LastScene");
                     return;
                 }
+                SaveData.SavePreviousScene();
                 SceneManager.LoadScene(SaveData.playerStatus.stageTag + 1);
-
             }
         }
     }
