@@ -10,7 +10,7 @@ public class NextText : MonoBehaviour
     private GameObject player;
     private GameObject silk;
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindWithTag("Player");
 
@@ -48,5 +48,11 @@ public class NextText : MonoBehaviour
     {
         totalTag++;
         Check();
+    }
+
+    public void SkipScene()
+    {
+        player.SetActive(true);
+        SceneManager.LoadScene("Excuter");
     }
 }
