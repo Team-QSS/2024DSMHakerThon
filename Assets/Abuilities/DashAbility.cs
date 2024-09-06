@@ -8,7 +8,6 @@ namespace Abuilities
         protected override void SetAbil()
         {
             PlayerMove.canmove = false;
-            PlayerMove.unlockDash = true;
             SaveData.SetAbilities("dash");
         }
     }
