@@ -39,34 +39,42 @@ namespace weapons.Silk
             isBlocked = false;
             isGraped = false;
         }
-        
-        private void OnTriggerEnter2D(Collider2D col)
+
+        public void ForceAttach(RaycastHit2D hit)
         {
-            if (col.CompareTag("wall"))
-            {
-                joint2D.enabled = true;
-                silkThrow.isAttach = true;
-                AudioManager.PlaySoundInstance("Audio/SilkCatch");
-                isBlocked = true;
-                stopPos = gameObject.transform.position;
-                if (particlesQueue.Count == 0)
-                {
-                    var particleInstance =
-                        Instantiate(particle, gameObject.transform.position, Quaternion.Euler(0, 0, 0));
-                    particleInstance.SetActive(true);
-                    Destroy(particleInstance,2f);
-                }
-                else
-                {
-                    var particleInstance = particlesQueue.Dequeue();
-                    particleInstance.SetActive(true);
-                    particleInstance.transform.position = gameObject.transform.position;
-                    particleInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    particleInstance.GetComponent<ParticleSystem>().Play();
-                    parameterQueue.Enqueue(particleInstance);
-                    Invoke(nameof(ParticleDisable), 3f);
-                }
-            }
+            transform.position = hit.point;
+            joint2D.enabled = true;
+            silkThrow.isAttach = true;
+            AudioManager.PlaySoundInstance("Audio/SilkCatch");
+            isBlocked = true;
+            stopPos = transform.position;
+            var particleInstance = particlesQueue.Count == 0
+                ? Instantiate(particle)
+                : particlesQueue.Dequeue();
+            particleInstance.transform.position = transform.position;
+            particleInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
+            particleInstance.GetComponent<ParticleSystem>().Play();
+            parameterQueue.Enqueue(particleInstance);
+            Invoke(nameof(ParticleDisable), 3f);
+        }
+        
+        public void OnTriggerEnter2D(Collider2D col)
+        {
+            if (!col.CompareTag("wall")) return;
+            joint2D.enabled = true;
+            silkThrow.isAttach = true;
+            AudioManager.PlaySoundInstance("Audio/SilkCatch");
+            isBlocked = true;
+            stopPos = transform.position;
+            var particleInstance = particlesQueue.Count == 0
+                ? Instantiate(particle)
+                : particlesQueue.Dequeue();
+            particleInstance.SetActive(true);
+            particleInstance.transform.position = transform.position;
+            particleInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
+            particleInstance.GetComponent<ParticleSystem>().Play();
+            parameterQueue.Enqueue(particleInstance);
+            Invoke(nameof(ParticleDisable), 3f);
         }
 
         private void ParticleDisable()
