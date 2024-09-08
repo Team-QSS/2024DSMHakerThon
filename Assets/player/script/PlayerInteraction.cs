@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Interact;
 using SavePoint;
-using Unity.VisualScripting;
 using UnityEngine;
 namespace player.script
 {
@@ -74,12 +72,7 @@ namespace player.script
                     break;
                 case "ability":
                     break;
-                default:
-                    Debug.LogError("Unidentified interaction");
-                    break;
-                    
             }
         }
-
     }
 }
