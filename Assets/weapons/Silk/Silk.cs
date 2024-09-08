@@ -14,7 +14,6 @@ namespace weapons.Silk
         private LineRenderer line;
         private Rigidbody2D silk;
         
-        private Vector2 mouseDir;
         public Camera mainCam;
         public bool isSilkActive;
         public bool isLineMax;
@@ -59,8 +58,10 @@ namespace weapons.Silk
             if (Input.GetMouseButtonDown(1) && !isSilkActive && silkGauge>0 && PlayerMove.canmove)
             {
                 silk.transform.position = transform.position;
-                mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
-                mouseDir = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)) - transform.position;
+                var localMousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+                Vector2 direction = (localMousePos - transform.position).normalized;
+                var hit = Physics2D.Raycast(transform.position, direction, Math.Min(9, (localMousePos - transform.position).magnitude), LayerMask.GetMask("platform", "ground"));
+                mousePos = hit.collider ? hit.point + direction * 0.2f : localMousePos;
                 isSilkActive = true;
                 isLineMax = false;
                 AudioManager.PlaySoundInstance("Audio/SilkThrow");
