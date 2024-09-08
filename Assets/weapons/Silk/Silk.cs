@@ -18,9 +18,9 @@ namespace weapons.Silk
         public bool isSilkActive;
         public bool isLineMax;
         public bool isLineLimit;
+        private RaycastHit2D attachedHit;
         private Vector2 mousePos;
-        private float mouseDisX;
-        private float mouseDisY;
+        private float colliderDistance;
         public int silkGauge = 6;
         private bool filling;
         private Image[] silkGaugeObj;
@@ -60,8 +60,9 @@ namespace weapons.Silk
                 silk.transform.position = transform.position;
                 var localMousePos = mainCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
                 Vector2 direction = (localMousePos - transform.position).normalized;
-                var hit = Physics2D.Raycast(transform.position, direction, Math.Min(9, (localMousePos - transform.position).magnitude), LayerMask.GetMask("platform", "ground"));
-                mousePos = hit.collider ? hit.point + direction * 0.2f : localMousePos;
+                attachedHit = Physics2D.Raycast(transform.position, direction, Math.Min(9, (localMousePos - transform.position).magnitude), LayerMask.GetMask("platform", "ground"));
+                mousePos = attachedHit.collider ? attachedHit.point : localMousePos;
+                colliderDistance = attachedHit.collider ? attachedHit.distance : 9f;
                 isSilkActive = true;
                 isLineMax = false;
                 AudioManager.PlaySoundInstance("Audio/SilkThrow");
@@ -74,7 +75,7 @@ namespace weapons.Silk
                 case true when !isLineMax:
                 {
                     silk.position = Vector2.MoveTowards(silk.position, mousePos, Time.deltaTime * 30);
-                    if (Vector2.Distance(transform.position, silk.position) > 9f) isLineMax = true;
+                    if (Vector2.Distance(transform.position, silk.position) > colliderDistance) isLineMax = true;
                     if (silk.position.Equals(mousePos)) isLineMax = true;
 
                     if (SilkThrow.Instance.isBlocked) mousePos = SilkThrow.Instance.stopPos;
@@ -84,6 +85,11 @@ namespace weapons.Silk
                 }
                 case true when isLineMax && !isAttach:
                 {
+                    if (attachedHit.collider)
+                    {
+                        SilkThrow.Instance.ForceAttach(attachedHit);
+                        break;
+                    }
                     silk.position = Vector2.MoveTowards(silk.position, transform.position, Time.deltaTime * 30);
                     if (Vector2.Distance(transform.position, silk.position) < 0.1f)
                     {
