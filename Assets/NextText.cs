@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,5 +55,10 @@ public class NextText : MonoBehaviour
     {
         player.SetActive(true);
         SceneManager.LoadScene("Excuter");
+    }
+
+    public void ChangeBackgroundMusic()
+    {
+        AudioManager.StopAllSoundsInstance();
     }
 }

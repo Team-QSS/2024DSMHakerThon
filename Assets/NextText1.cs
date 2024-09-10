@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using player.script;
 using TMPro;
 using UnityEngine;
@@ -41,5 +42,10 @@ public class NextText1: MonoBehaviour
     {
         totalTag++;
         Check();
+    }
+
+    public void ChangeBackgroundMusic()
+    {
+        AudioManager.SetAsBackgroundMusicInstance("Audio/MAIN_THEME", true);
     }
 }
