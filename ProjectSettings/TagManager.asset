@@ -15,6 +15,7 @@ TagManager:
   - bossName
   - bossHp
   - timelinetmp
+  - line
   layers:
   - Default
   - TransparentFX
