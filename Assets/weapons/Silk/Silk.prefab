@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7973999572176399154}
   m_Layer: 0
   m_Name: Line
-  m_TagString: Untagged
+  m_TagString: line
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0145461d3006e18448c5776791d10dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeDestroy: 1
+  canBeDestroy: 0
   joint2D: {fileID: 765249872704652988}
   stopPos: {x: 0, y: 0}
   isBlocked: 0

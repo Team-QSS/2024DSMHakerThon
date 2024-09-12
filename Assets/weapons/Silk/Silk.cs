@@ -11,7 +11,7 @@ namespace weapons.Silk
 {
     public class Silk : MonoBehaviour
     {
-        private LineRenderer line;
+        [SerializeField]private LineRenderer line;
         private Rigidbody2D silk;
         
         public Camera mainCam;
