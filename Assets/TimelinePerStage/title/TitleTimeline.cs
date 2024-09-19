@@ -12,7 +12,7 @@ namespace TimelinePerStage.title
         [SerializeField] private GameObject timeLine;
         private void Start()
         {
-            AudioManager.SetAsBackgroundMusicInstance("Audio/Cricket", true);
+            AudioManager.SetAsBackgroundMusicInstance("Audio/MAIN_THEME", true);
             timeLine.SetActive(false);
             Destroy(PlayerMove.Instance.gameObject);
             Destroy(SilkThrow.Instance.gameObject);

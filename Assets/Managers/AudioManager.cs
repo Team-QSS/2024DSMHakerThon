@@ -39,7 +39,7 @@ namespace Managers
         private void SetAsBackgroundMusic(string path, bool loop = false)
         {
             var clip = GetClip(path);
-            if (!clip) return;
+            if (!clip || audioSource.clip == clip) return;
             audioSource.clip = clip;
             audioSource.loop = loop;
             audioSource.Play();
@@ -49,7 +49,11 @@ namespace Managers
 
         private void ClearEventHandler() => eventHandlers.Clear();
 
-        private void StopAllSounds() => audioSource.Stop();
+        private void StopAllSounds()
+        {
+            audioSource.clip = null;
+            audioSource.Stop();
+        }
 
         private static AudioClip GetClip(string path)
         {
