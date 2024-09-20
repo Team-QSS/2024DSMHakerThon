@@ -66,7 +66,7 @@ namespace Talk
         }
         private enum TalkersName
         {
-            Sanabang,
+            Luan,
             Crow,
             Spider,
             Mantis,

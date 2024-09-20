@@ -1,6 +1,6 @@
 /*
 You can insert this Characters...
-	Sanabang,
+	Luan,
     Crow,
     Spider,
     Mantis,
