@@ -13,7 +13,8 @@ namespace player.script
     public class PlayerMove : SingleMono<PlayerMove>
     {
         public static Vector2 playerPos;
-        public static bool canmove;
+        public static bool canmove = true;
+        public static int disableOnlyMove;
         public float horizontal;
         public float jumpingPower = 16f;
         public float speed = 8f;
@@ -62,13 +63,12 @@ namespace player.script
             tr.emitting = false;
             stunned = false;
             SaveData.LoadFromJson();
-            canmove = true;
         }
 
         private void Update()
         {
             playerPos = gameObject.transform.position;
-            if (!canmove)
+            if (!canmove || disableOnlyMove > 0)
             {
                 speed = 0;
                 jumpingPower = 0;
@@ -118,10 +118,10 @@ namespace player.script
             }
             else playerAnim.SetBool(IsJumping,false);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&&canmove) StartCoroutine(Dash());
+            if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&&canmove&&disableOnlyMove == 0) StartCoroutine(Dash());
             
-            if (horizontal > 0 && !isFacingRight&&canmove) Flip();
-            if (horizontal < 0 && isFacingRight&&canmove) Flip();
+            if (horizontal > 0 && !isFacingRight&&canmove&&disableOnlyMove == 0) Flip();
+            if (horizontal < 0 && isFacingRight&&canmove&&disableOnlyMove == 0) Flip();
         }
 
         // Update is called once per frame

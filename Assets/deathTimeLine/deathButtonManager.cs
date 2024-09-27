@@ -10,13 +10,12 @@ namespace deathTimeLine
     {
         private void Start()
         {
-            PlayerMove.Instance.gameObject.SetActive(false);
+            Destroy(PlayerMove.Instance.gameObject);
+            Destroy(SilkThrow.Instance.gameObject);
         }
 
         public void Load()
         {
-            Destroy(PlayerMove.Instance.gameObject);
-            Destroy(SilkThrow.Instance.gameObject);
             SaveData.LoadScene();
         }
 
