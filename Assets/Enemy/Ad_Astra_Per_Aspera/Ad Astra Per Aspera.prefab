@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patterns: []
+  spear: {fileID: 6974449009900595336, guid: 6e0a2c089e557f74392dad5731d7fecc, type: 3}
 --- !u!96 &5869539483508214402
 TrailRenderer:
   serializedVersion: 3

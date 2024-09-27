@@ -19,6 +19,8 @@ namespace Enemy.Ad_Astra_Per_Aspera
         private bool isAttacking;
         private bool localParry;
         public List<PatternInfo> patterns;
+        private readonly Queue<GameObject> spears = new();
+        [SerializeField] private GameObject spear;
         private void Start()
         {
             if (patterns.Count == 0)
@@ -76,22 +78,23 @@ namespace Enemy.Ad_Astra_Per_Aspera
             {
                 for (var i = 0; i < info.repeatTime; i++)
                 {
+                    var pos = PlayerMove.playerPos + new Vector2(Random.Range(-2f, 2f), 5);
+                    var vector = PlayerMove.playerPos - pos;
+                    spears.Enqueue(Instantiate(spear, pos, new Quaternion(vector.x, vector.y, 0, 0), PlayerMove.Instance.transform));
                     AudioManager.PlaySoundInstance("Audio/SilkCatch");
                     yield return new WaitForSeconds(info.waitTime);
                 }
                 yield return new WaitForSeconds(info.postDelay);
             }
-            if (!localParry)
-            {
-                SceneManager.LoadScene("YouDied");
-                isAttacking = false;
-                yield break;
-            }
+            var failParry = !localParry;
             foreach (var info in patterns)
             {
                 for (var i = 0; i < info.repeatTime; i++)
                 {
-                    AudioManager.PlaySoundInstance("Audio/PARRY_SUCCESS");
+                    var o = spears.Dequeue();
+                    o.transform.position = PlayerMove.playerPos;
+                    AudioManager.PlaySoundInstance(failParry ? "Audio/PARRY_PROCESS" : "Audio/PARRY_SUCCESS");
+                    Destroy(o, info.waitTime + info.postDelay);
                     yield return new WaitForSeconds(info.waitTime);
                 }
                 yield return new WaitForSeconds(info.postDelay);
@@ -99,6 +102,12 @@ namespace Enemy.Ad_Astra_Per_Aspera
             PlayerMove.disableOnlyMove--;
             isAttacking = false;
             localParry = false;
+            if (failParry)
+            {
+                SceneManager.LoadScene("YouDied");
+                isAttacking = false;
+                yield break;
+            }
             Destroy(gameObject);
         }
     }
