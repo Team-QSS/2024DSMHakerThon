@@ -44,7 +44,12 @@ namespace Enemy.Ad_Astra_Per_Aspera
         private void FixedUpdate()
         {
             if (isAttacking && Parry.isParrying) localParry = true;
-            if (isAttacking) return;
+            if (isAttacking)
+            {
+                rb.position = PlayerMove.playerPos + new Vector2(PlayerMove.Instance.isFacingRight ? 2 : -2, 0);
+                rb.velocity = Vector2.zero;
+                return;
+            }
             if ((PlayerMove.playerPos - rb.position).magnitude < 5f && (rb.position - home).magnitude < 10f) targetPos = PlayerMove.playerPos;
             var vector = new Vector2(targetPos.x, rb.position.y) - rb.position;
             if (vector.magnitude < 0.1f)
